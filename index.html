@@ -188,15 +188,36 @@
         .nav-links a:hover { color: var(--can-red); }
         .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--can-blue); }
 
-        /* --- 4. HERO --- */
+        /* --- 4. HERO WITH VIDEO BACKGROUND --- */
         .hero {
-            height: 500px;
-            background: linear-gradient(135deg, rgba(0,56,147,0.7), rgba(220,20,60,0.7)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            display: flex; align-items: center; color: var(--white);
+            height: 600px;
             position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--white);
             overflow: hidden;
         }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,56,147,0.7), rgba(220,20,60,0.7));
+            z-index: -1;
+        }
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -206,14 +227,16 @@
             height: 200%;
             background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
             animation: shimmer 6s infinite;
+            z-index: -1;
         }
+        
         .hero-text { 
             max-width: 700px; 
             border-left: 6px solid var(--can-red); 
             padding-left: 30px; 
             animation: slideRight 1s ease-out;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         .hero h1 { 
@@ -747,7 +770,7 @@
             }
             
             .hero { 
-                height: 400px; 
+                height: 500px; 
                 text-align: center; 
             }
             .hero-text { 
@@ -758,7 +781,7 @@
                 padding-left: 0;
             }
             .hero h1 { 
-                font-size: 2.2rem; 
+                font-size: 2.5rem; 
                 color: var(--white);
             }
             
@@ -817,7 +840,8 @@
                 height: 30px; 
             }
             
-            .hero h1 { font-size: 1.8rem; }
+            .hero { height: 450px; }
+            .hero h1 { font-size: 2rem; }
             .hero p { font-size: 0.9rem; }
             
             .section-title { font-size: 1.5rem; }
@@ -854,7 +878,7 @@
             .logo-img { 
                 height: 25px; 
             }
-            .hero h1 { font-size: 1.5rem; }
+            .hero h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -898,8 +922,16 @@
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO WITH VIDEO BACKGROUND -->
     <section class="hero">
+        <!-- Video Background -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/6329863/6329863-uhd_3840_2160_30fps.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        
         <div class="container">
             <div class="hero-text fade-in-up">
                 <h1>REPRESENTING<br>THE PRIDE OF DANGI</h1>
@@ -926,7 +958,8 @@
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-clipboard"></i></div>
                     <div class="player-img">
-<img src="Dil.jpg" alt="Dil Prasad Magar" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar'">                    </div>
+                        <img src="https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar" alt="Dil Prasad Magar">
+                    </div>
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
                         <div class="player-role">Head Coach</div>
@@ -1466,7 +1499,7 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 Dangi Cricket Association. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--can-red);"></i> by <a href="https://ramanbhandari.com.np/" target="_blank">Raman Bhandari</a>
+                &copy; 2026 Dangi Cricket Association. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--can-red);"></i> by <a href="https://ramanbhandari.com.np/" target="_blank">Raman Bhandari</a>
             </div>
         </div>
     </footer>
@@ -1540,18 +1573,20 @@
         document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
         // Lightbox options
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'albumLabel': 'Image %1 of %2',
-            'fadeDuration': 300,
-            'imageFadeDuration': 300
-        });
+        if (typeof lightbox !== 'undefined') {
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'albumLabel': 'Image %1 of %2',
+                'fadeDuration': 300,
+                'imageFadeDuration': 300
+            });
+        }
 
         // Add fallback for logo if image doesn't load
         document.querySelectorAll('img').forEach(img => {
             img.onerror = function() {
-                if(this.alt.includes('Logo')) {
+                if(this.alt && this.alt.includes('Logo')) {
                     this.src = 'https://via.placeholder.com/45x45/003893/ffffff?text=DCA';
                 }
             };
