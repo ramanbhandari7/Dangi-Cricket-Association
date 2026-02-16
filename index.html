@@ -6,6 +6,9 @@
     <meta name="description" content="Official website of Dangi Cricket Association (DCA).">
     <title>DCA | Dangi Cricket Association</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -75,7 +78,20 @@
         
         nav { background: var(--white); box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .logo { font-size: 2rem; font-family: 'Oswald', sans-serif; font-weight: bold; color: var(--can-blue); display: flex; align-items: center; gap: 10px; }
+        .logo { 
+            font-size: 2rem; 
+            font-family: 'Oswald', sans-serif; 
+            font-weight: bold; 
+            color: var(--can-blue); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 4px;
+        }
         .logo span { color: var(--can-red); }
         
         .nav-links { display: flex; gap: 30px; }
@@ -190,6 +206,10 @@
             
             /* Adjust image height specifically for mobile if needed */
             .player-img { height: 320px; }
+            
+            .logo-img {
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -214,8 +234,8 @@
     <nav>
         <div class="container nav-inner">
             <div class="logo">
-                <i class="fas fa-cricket" style="color: var(--can-red); margin-right:10px;"></i>
-                Dangi <span>Cricket</span>
+                <img src="logo.jpg" alt="DCA Logo" class="logo-img">
+                Dangi <span>Cricket</span>Association
             </div>
             <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="nav-links">
@@ -294,7 +314,7 @@
                         <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Yamphu" alt="P2">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Yamphu</h3>
+                        <h3 class="player-name">Sanjay Yamphu Rai</h3>
                         <div class="player-role">Vice Captain / Batsman</div>
                     </div>
                 </div>
@@ -314,7 +334,7 @@
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Deewana L. Yakha</h3>
-                        <div class="player-role">Wicket Keeper</div>
+                        <div class="player-role">Wicket Keeper/All Rounder</div>
                     </div>
                 </div>
             </div>
@@ -422,7 +442,8 @@
             <div class="footer-grid">
                 <div class="footer">
                     <h3>DCA</h3>
-                    <p>The official governing body of cricket in Dangi, Kerabari-6. Committed to excellence, integrity, and community spirit.</p>
+                    <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. 
+                        Committed to excellence, integrity, and community spirit.</p>
                 </div>
                 <div class="footer footer-links">
                     <h3>Quick Links</h3>
@@ -441,7 +462,7 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 Dangi Cricket Association. All Rights Reserved. | Designed by Raman Bhandari.
+                &copy; 2026 Dangi Cricket Association. All Rights Reserved. | Designed by Raman Bhandari.
             </div>
         </div>
     </footer>
