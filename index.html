@@ -116,7 +116,11 @@
         .management-title span { background: var(--light-bg); padding: 0 20px; position: relative; z-index: 2; color: var(--gray-text); font-weight: bold; letter-spacing: 1px; }
         .management-title::before { content:''; position: absolute; width: 100%; height: 1px; background: #ccc; top: 50%; left: 0; z-index: 1; }
 
-        .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .squad-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+        }
         
         .player-card {
             background: var(--white); border-bottom: 4px solid var(--can-blue);
@@ -125,14 +129,22 @@
         }
         .player-card:hover { border-bottom-color: var(--can-red); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
         
-        /* --- IMAGE FIX FOR BIG SCREENS --- */
-        /* Increased height to 340px to create a vertical aspect ratio */
-        .player-img { height: 340px; background: #eee; overflow: hidden; position: relative; }
+        /* --- FIXED IMAGE DISPLAY --- */
+        .player-img { 
+            height: 300px; 
+            background: #e1e1e1; 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .player-img img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
-            object-position: top center; /* Keeps face visible */
+            object-fit: contain; /* Shows full image without cropping */
+            background: #f0f0f0;
+            padding: 5px;
         }
 
         .player-info { padding: 20px; text-align: center; }
@@ -144,7 +156,12 @@
             font-size: 0.9rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 2;
         }
 
-        .squad-hidden { display: none; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-top: 25px; }
+        .extra-badge {
+            position: absolute; top: 15px; left: 15px; background: var(--can-red); color: var(--white); 
+            padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; z-index: 2;
+        }
+
+        .squad-hidden { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 25px; }
         .squad-hidden.active { display: grid; animation: fadeIn 0.6s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -202,10 +219,11 @@
             .match-card { flex-direction: column; gap: 15px; text-align: center; }
             .match-vs { padding: 10px 0; transform: rotate(90deg); }
             
-            .squad-grid { grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); } 
+            .squad-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            } 
             
-            /* Adjust image height specifically for mobile if needed */
-            .player-img { height: 320px; }
+            .player-img { height: 280px; }
             
             .logo-img {
                 height: 40px;
@@ -235,7 +253,7 @@
         <div class="container nav-inner">
             <div class="logo">
                 <img src="logo.jpg" alt="DCA Logo" class="logo-img">
-                Dangi <span>Cricket</span>Association
+                Dangi <span>Cricket</span>
             </div>
             <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="nav-links">
@@ -261,21 +279,21 @@
         </div>
     </section>
 
-    <!-- 1. SQUAD SECTION -->
+    <!-- 1. SQUAD SECTION - 15 Players + 2 Management = 17 Total -->
     <section class="squad-section" id="squad">
         <div class="container">
             <div class="section-header fade-in-up">
-                <h2 class="section-title">DCA Squad</h2>
+                <h2 class="section-title">DCA Squad (17 Members)</h2>
             </div>
 
-            <!-- Management -->
+            <!-- Management (2) -->
             <div class="management-title fade-in-up"><span>TEAM MANAGEMENT</span></div>
-            <div class="squad-grid" style="justify-content: center;">
+            <div class="squad-grid">
                 <!-- Coach -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-clipboard"></i></div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/e1e1e1/003893?text=Coach" alt="Dil Prasad Magar">
+                        <img src="https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar" alt="Dil Prasad Magar">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
@@ -283,10 +301,10 @@
                     </div>
                 </div>
                 <!-- Manager -->
-                <div class="player-card fade-in-up" style="transition-delay: 0.1s;">
+                <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-user-tie"></i></div>
                     <div class="player-img">
-                        <img src="raman.jpg" alt="Raman Bhandari" onerror="this.src='https://via.placeholder.com/300x340/e1e1e1/003893?text=Manager'">
+                        <img src="raman.jpg" alt="Raman Bhandari" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari'">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Raman Bhandari</h3>
@@ -295,79 +313,173 @@
                 </div>
             </div>
 
-            <!-- Players -->
-            <div class="management-title fade-in-up"><span>PLAYING XI</span></div>
-            <div class="squad-grid">
+            <!-- Players (15) -->
+            <div class="management-title fade-in-up"><span>DCA PLAYERS</span></div>
+            <div class="squad-grid" id="initial-squad">
+             <!-- Player 1: Captain - Abhishek Thapa (Abhishek.jpg) -->
+    <div class="player-card fade-in-up">
+        <div class="role-badge">C</div>
+        <div class="player-img">
+            <img src="Abhishek.jpg" alt="Abhishek Thapa" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Abhishek+Thapa'">
+        </div>
+        <div class="player-info">
+            <h3 class="player-name">Abhishek Thapa</h3>
+            <div class="player-role">Captain / All-Rounder</div>
+        </div>
+    </div>
+                <!-- Player 2: Vice Captain -->
                 <div class="player-card fade-in-up">
-                    <div class="role-badge">C</div>
-                    <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Abhishek" alt="P1">
-                    </div>
-                    <div class="player-info">
-                        <h3 class="player-name">Abhishek Thapa</h3>
-                        <div class="player-role">Captain / All-Rounder</div>
-                    </div>
-                </div>
-                <div class="player-card fade-in-up" style="transition-delay: 0.1s;">
                     <div class="role-badge">VC</div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Yamphu" alt="P2">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Sanjay+Yamphu+Rai" alt="Sanjay Yamphu Rai">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Sanjay Yamphu Rai</h3>
                         <div class="player-role">Vice Captain / Batsman</div>
                     </div>
                 </div>
-                <div class="player-card fade-in-up" style="transition-delay: 0.2s;">
+                 <div class="player-card fade-in-up">
+                    <div class="role-badge">WK</div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Dipson" alt="P3">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Diwana+Linka+Yakha" alt="Diwana Linka Yakha">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Diwana Linka Yakha</h3>
+                        <div class="player-role">Wicket Keeper/All Rounder</div>
+                    </div>
+                </div>
+                <!-- Player 8 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Dipson+Karki" alt="Dipson Karki">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
                         <div class="player-role">Fast Bowler</div>
                     </div>
                 </div>
-                <div class="player-card fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="role-badge">WK</div>
+                <!-- Player 3 -->
+                <div class="player-card fade-in-up">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Deewana" alt="P4">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Manish+Khadka" alt="Manish Khadka">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Deewana L. Yakha</h3>
-                        <div class="player-role">Wicket Keeper/All Rounder</div>
+                        <h3 class="player-name">Manish Khadka</h3>
+                        <div class="player-role">Spin Bowler/Batsman</div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Hidden Players -->
-            <div class="squad-hidden" id="full-squad">
-                <div class="player-card">
+                <!-- Player 4 -->
+                <div class="player-card fade-in-up">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Player" alt="P5">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Narayan+Khadka" alt="Narayan Khadka">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Player Name</h3>
+                        <h3 class="player-name">Narayan Khadka</h3>
                         <div class="player-role">Batsman</div>
                     </div>
                 </div>
-                <div class="player-card">
+                <!-- Player 5: Wicket Keeper -->
+               
+                <!-- Player 6 -->
+                <div class="player-card fade-in-up">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Player" alt="P6">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Kiran+Dahal" alt="Kiran Dahal">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Player Name</h3>
+                        <h3 class="player-name">Kiran Dahal</h3>
+                        <div class="player-role">All-Rounder</div>
+                    </div>
+                </div>
+                <!-- Player 7 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Sonu+Yamphu" alt="Sonu Yamphu">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sonu Yamphu</h3>
                         <div class="player-role">Bowler</div>
+                    </div>
+                </div>
+                
+                <!-- Player 9 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Dhanraj+Sah" alt="Dhanraj Sah">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Dhanraj Sah</h3>
+                        <div class="player-role">Batsman</div>
+                    </div>
+                </div>
+                <!-- Player 10 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Samin+Magar" alt="Samin Magar">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Samin Magar</h3>
+                        <div class="player-role">Fielder</div>
+                    </div>
+                </div>
+                <!-- Player 11 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Sekhar+Magar" alt="Sekhar Magar">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sekhar Magar</h3>
+                        <div class="player-role">Batsman</div>
+                    </div>
+                </div>
+                <!-- Player 12 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Suresh+Magar" alt="Suresh Magar">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suresh Magar</h3>
+                        <div class="player-role">Fielder</div>
+                    </div>
+                </div>
+                <!-- Player 13 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Anmol+Magar" alt="Anmol Magar">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Anmol Magar</h3>
+                        <div class="player-role">Fielder</div>
+                    </div>
+                </div>
+                <!-- Player 14 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Aabiskar+Ghimire" alt="Aabiskar Ghimire">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Aabiskar Ghimire</h3>
+                        <div class="player-role">Fielderr</div>
+                    </div>
+                </div>
+                <!-- Player 15 -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x400/003893/ffffff?text=Suman+Giri" alt="Suman Giri">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suman Giri</h3>
+                        <div class="player-role">Fielder</div>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 50px;">
-                <button class="btn" id="toggle-btn" onclick="toggleSquad()">View Full Squad</button>
-            </div>
+            <p style="text-align: center; margin-top: 30px; color: var(--gray-text); font-weight: bold; font-size: 1.1rem;">
+                Total: 2 Management + 15 Players = 17 Members
+            </p>
         </div>
     </section>
 
-    <!-- 2. NEXT FIXTURE (Only Upcoming) -->
+    <!-- 2. NEXT FIXTURE -->
     <section class="match-section" id="fixture">
         <div class="container">
             <h2 class="section-title fade-in-up" style="margin-bottom: 40px;">Next Match</h2>
@@ -385,7 +497,6 @@
                     </div>
                 </div>
                 <div style="margin-top: 20px;">
-                     <!-- WhatsApp Match Details Link -->
                      <a href="https://wa.me/9779810430546?text=Hello,%20I%20want%20to%20know%20about%20the%20upcoming%20match" target="_blank" class="btn" style="background: var(--can-blue);">
                         Match Details
                      </a>
@@ -412,7 +523,7 @@
                         <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
-                <div class="news-card fade-in-up" style="transition-delay: 0.1s;">
+                <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">JAN 20</span>
                         <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
@@ -422,7 +533,7 @@
                         <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
-                <div class="news-card fade-in-up" style="transition-delay: 0.2s;">
+                <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">JAN 15</span>
                         <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
@@ -442,8 +553,7 @@
             <div class="footer-grid">
                 <div class="footer">
                     <h3>DCA</h3>
-                    <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. 
-                        Committed to excellence, integrity, and community spirit.</p>
+                    <p>The official governing body of cricket in Dangi, Kerabari-6. Committed to excellence, integrity, and community spirit.</p>
                 </div>
                 <div class="footer footer-links">
                     <h3>Quick Links</h3>
@@ -462,7 +572,7 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2026 Dangi Cricket Association. All Rights Reserved. | Designed by Raman Bhandari.
+                &copy; 2025 Dangi Cricket Association. All Rights Reserved. | Designed by Raman Bhandari.
             </div>
         </div>
     </footer>
@@ -473,17 +583,14 @@
             document.getElementById('nav-links').classList.toggle('active');
         }
 
-        function toggleSquad() {
-            const hiddenSquad = document.getElementById('full-squad');
-            const btn = document.getElementById('toggle-btn');
-            if (hiddenSquad.classList.contains('active')) {
-                hiddenSquad.classList.remove('active');
-                btn.innerText = "View Full Squad";
-            } else {
-                hiddenSquad.classList.add('active');
-                btn.innerText = "Show Less";
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            if (!navLinks.contains(event.target) && !hamburger.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
             }
-        }
+        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
