@@ -6,368 +6,544 @@
     <meta name="description" content="Official website of Dangi Cricket Association (DCA).">
     <title>DCA | Dangi Cricket Association</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Fonts: Oswald (Headings), Roboto (Body - cleaner, like CAN site) -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- THEME VARIABLES --- */
+        /* --- 1. THEME VARIABLES (Official Nepal Colors) --- */
         :root {
-            --primary-blue: #003366;
-            --accent-gold: #FFD700;
-            --cricket-red: #D32F2F;
+            --can-blue: #003893;   /* Official Deep Blue */
+            --can-red: #DC143C;    /* Crimson Red */
             --white: #ffffff;
-            --light-gray: #f4f4f4;
-            --dark-gray: #333333;
+            --light-bg: #f5f6f8;
+            --dark-text: #222222;
+            --gray-text: #666666;
+            --border-color: #e1e1e1;
         }
 
-        /* --- GLOBAL --- */
+        /* --- 2. GLOBAL RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; background-color: var(--white); color: var(--dark-gray); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: var(--white); 
+            color: var(--dark-text); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+
+        h1, h2, h3, h4 { 
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            color: var(--can-blue);
+        }
+
         a { text-decoration: none; transition: 0.3s; color: inherit; }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
-        .container { width: 90%; max-width: 1200px; margin: auto; padding: 0 15px; }
 
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-blue); position: relative; }
-        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--cricket-red); margin: 10px auto 0; }
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: auto; 
+            padding: 0 15px; 
+        }
+
+        /* Official "Box" Button Style */
+        .btn { 
+            display: inline-block; 
+            padding: 10px 25px; 
+            background: var(--can-red); 
+            color: var(--white); 
+            font-family: 'Oswald', sans-serif; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            border: none; 
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn:hover { background: #b00e2e; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
         
-        .sub-title {
-            text-align: center;
-            font-size: 1.5rem;
-            margin: 40px 0 20px;
-            color: var(--dark-gray);
-            border-bottom: 2px solid var(--accent-gold);
-            display: inline-block;
+        .section-title {
+            font-size: 2rem;
+            border-bottom: 4px solid var(--can-red);
+            padding-bottom: 6px;
+            margin-bottom: -12px; /* Pulls it down to overlap the grey line */
+        }
+
+        /* --- 3. TOP BAR (New - Like CAN Site) --- */
+        .top-bar {
+            background-color: var(--can-blue);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .top-info span { margin-right: 15px; }
+        .top-socials a { margin-left: 10px; color: var(--white); }
+
+        /* --- 4. NAVIGATION --- */
+        nav {
+            background: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .logo {
+            font-size: 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            color: var(--can-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: var(--can-red); }
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-text);
+            text-transform: uppercase;
+            font-size: 0.95rem;
             padding-bottom: 5px;
         }
-        .sub-title-wrapper { text-align: center; width: 100%; }
-
-        .btn { display: inline-block; padding: 12px 30px; background: var(--cricket-red); color: var(--white); font-family: 'Oswald', sans-serif; font-weight: bold; border-radius: 4px; border: none; cursor: pointer; }
-        .btn:hover { background: #b71c1c; transform: translateY(-2px); }
-
-        /* --- HEADER --- */
-        header { background: var(--primary-blue); color: var(--white); padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: bold; color: var(--accent-gold); display: flex; align-items: center; gap: 10px; }
-        .nav-menu { display: flex; gap: 25px; }
-        .nav-menu a { color: var(--white); font-weight: bold; font-size: 0.9rem; }
-        .nav-menu a:hover { color: var(--accent-gold); }
-        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
-
-        /* --- HERO --- */
-        .hero { height: 85vh; background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); }
-        .hero-content h1 { font-size: 4rem; margin-bottom: 10px; color: var(--accent-gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
-        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; font-weight: 300; }
-
-        /* --- ABOUT --- */
-        .about-section { padding: 80px 0; background: var(--white); }
-        .about-grid { display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-image { flex: 1; min-width: 300px; }
-        .about-image img { border-radius: 10px; box-shadow: 10px 10px 0px var(--accent-gold); }
-
-        /* --- SQUAD & MANAGEMENT --- */
-        .squad-section { padding: 80px 0; background: var(--light-gray); }
+        .nav-links a:hover { color: var(--can-red); }
         
-        .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--can-blue); }
+
+        /* --- 5. HERO SECTION --- */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+        }
+        .hero-text {
+            max-width: 600px;
+            border-left: 5px solid var(--can-red);
+            padding-left: 20px;
+        }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 15px; }
+        .hero p { font-size: 1.1rem; margin-bottom: 20px; font-weight: 300; }
+
+        /* --- 6. NEWS SECTION (New Feature) --- */
+        .news-section { padding: 60px 0; background: var(--white); }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .news-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
+        .news-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .news-img { height: 200px; overflow: hidden; }
+        .news-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .news-card:hover .news-img img { transform: scale(1.05); }
         
-        /* Hidden Squad Section Styles */
-        .squad-hidden {
-            display: none; /* Hidden by default */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 30px;
-            margin-top: 30px;
-        }
+        .news-content { padding: 20px; }
+        .news-date { color: var(--can-red); font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; display: block; }
+        .news-title { font-size: 1.2rem; line-height: 1.3; margin-bottom: 10px; color: var(--can-blue); }
+        .read-more { font-size: 0.85rem; font-weight: bold; color: var(--dark-text); text-decoration: underline; }
 
-        .squad-hidden.active {
-            display: grid; /* Becomes grid when active */
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* --- 7. SQUAD SECTION --- */
+        .squad-section { padding: 60px 0; background: var(--light-bg); }
         
-        .management-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 30px; 
-            margin-bottom: 40px; 
-        }
-        .management-grid .player-card {
-            flex: 0 1 300px; /* limits width */
-        }
+        .management-title { text-align: center; margin: 30px 0 20px; position: relative; }
+        .management-title span { background: var(--light-bg); padding: 0 15px; position: relative; z-index: 2; color: var(--gray-text); font-weight: bold; }
+        .management-title::before { content:''; position: absolute; width: 100%; height: 1px; background: #ddd; top: 50%; left: 0; z-index: 1; }
 
-        .player-card { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; text-align: center; position: relative; }
-        .player-card:hover { transform: translateY(-10px); }
-        .player-img-container { height: 250px; background: #ddd; overflow: hidden; }
-        .player-img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .player-info { padding: 20px; }
-        .player-name { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 5px; }
-        .player-role { color: var(--cricket-red); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         
-        .badge-icon { position: absolute; top: 10px; right: 10px; background: var(--accent-gold); color: var(--primary-blue); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: 'Oswald', sans-serif; z-index: 2; }
+        /* Official Player Card Style */
+        .player-card {
+            background: var(--white);
+            border-bottom: 3px solid var(--can-blue);
+            transition: 0.3s;
+            position: relative;
+        }
+        .player-card:hover { border-bottom-color: var(--can-red); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .player-img { height: 260px; background: #eee; overflow: hidden; position: relative; }
+        .player-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .player-info { padding: 15px; text-align: center; }
+        .player-name { font-size: 1.1rem; color: var(--dark-text); margin-bottom: 2px; }
+        .player-role { font-size: 0.8rem; color: var(--can-red); font-weight: bold; text-transform: uppercase; }
+        
+        /* Role Badge */
+        .role-badge { 
+            position: absolute; top: 10px; right: 10px; 
+            background: var(--can-blue); color: var(--white); 
+            width: 35px; height: 35px; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 0.9rem; font-weight: bold;
+        }
 
-        /* --- MATCHES --- */
-        .match-section { padding: 80px 0; background: var(--primary-blue); color: var(--white); }
-        .match-section .section-title { color: var(--white); }
-        .match-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        .team { font-size: 1.5rem; font-family: 'Oswald', sans-serif; font-weight: bold; flex: 1; text-align: center; }
-        .vs { font-size: 1.2rem; color: var(--accent-gold); padding: 0 20px; font-weight: bold; }
-        .match-result { background: var(--cricket-red); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; width: 100%; text-align: center; }
+        /* Hidden Squad Logic */
+        .squad-hidden { display: none; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+        .squad-hidden.active { display: grid; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* --- FOOTER --- */
-        footer { background: var(--dark-gray); color: #888; padding: 40px 0; text-align: center; }
-        .footer-socials a { color: var(--white); margin: 0 10px; font-size: 1.2rem; }
-        .footer-socials a:hover { color: var(--accent-gold); }
+        /* --- 8. MATCH CENTER --- */
+        .match-section { padding: 60px 0; background: var(--can-blue); color: var(--white); }
+        .match-section .section-title { color: var(--white); border-bottom-color: var(--white); }
+        
+        .match-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .match-team { font-size: 1.4rem; font-family: 'Oswald'; }
+        .match-vs { color: #ccc; font-weight: 300; padding: 0 20px; }
+        .match-score { background: var(--can-red); padding: 5px 15px; font-weight: bold; font-size: 0.9rem; }
 
-        /* --- RESPONSIVE --- */
+        /* --- 9. PARTNERS (New) --- */
+        .partners-section { padding: 40px 0; background: var(--white); border-top: 1px solid #eee; }
+        .partners-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; align-items: center; opacity: 0.6; }
+        .partners-grid img { height: 50px; filter: grayscale(100%); transition: 0.3s; }
+        .partners-grid img:hover { filter: grayscale(0%); opacity: 1; }
+
+        /* --- 10. FOOTER --- */
+        footer { background: #111; color: #999; padding: 50px 0 20px; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer h3 { color: var(--white); margin-bottom: 20px; font-size: 1.2rem; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a:hover { color: var(--can-red); }
+        .copyright { text-align: center; border-top: 1px solid #222; padding-top: 20px; }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 20px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
             .hamburger { display: block; }
-            .nav-menu { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: var(--primary-blue); padding: 20px; text-align: center; }
-            .nav-menu.active { display: flex; }
-            .match-card { flex-direction: column; gap: 10px; }
+            .match-card { flex-direction: column; gap: 10px; text-align: center; }
+            .top-bar { display: none; } /* Hide top bar on very small screens to save space */
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo"><i class="fas fa-cricket"></i> DCA</div>
+    <!-- 1. TOP BAR (Official Touch) -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-info">
+                <span><i class="fas fa-envelope"></i> contact@dca-cricket.com</span>
+                <span><i class="fas fa-phone"></i> +977 9812345678</span>
+            </div>
+            <div class="top-socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <i class="fas fa-cricket" style="color: var(--can-red); margin-right:10px;"></i>
+                Dangi <span>Cricket</span>
+            </div>
             <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#squad">Team</a></li>
-                <li><a href="#matches">Matches</a></li>
+                <li><a href="#fixtures">Fixtures</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Dangi Cricket Association</h1>
-            <p>Passion. Integrity. Victory.</p>
-            <a href="#squad" class="btn">Meet the Team</a>
+    <!-- 3. HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>REPRESENTING<br>THE PRIDE OF DANGI</h1>
+                <p>Developing talent, fostering sportsmanship, and aiming for glory.</p>
+                <button class="btn">Join The Club</button>
+            </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section class="about-section" id="about">
+    <!-- 4. LATEST NEWS (New Feature like CAN) -->
+    <section class="news-section" id="news">
         <div class="container">
-            <div class="section-title">About The Club</div>
-            <div class="about-grid">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="DCA Team Huddle">
+            <div class="section-header">
+                <h2 class="section-title">Latest Updates</h2>
+                <a href="#" style="color: var(--can-red); font-weight: bold;">View Archive <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="news-grid">
+                <!-- News 1 -->
+                <div class="news-card">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">JAN 25, 2025</span>
+                        <h3 class="news-title">DCA Announces Squad for Regional Tournament</h3>
+                        <a href="#" class="read-more">Read Full Story</a>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <h3>We Are DCA</h3>
-                    <p>Established to bring cricket glory to Dangi, the Dangi Cricket Association represents the spirit of our community. We believe in playing hard, respecting the opposition, and nurturing local talent.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 20px;">
-                        <div><h4 style="color: var(--primary-blue); font-size: 2rem;">15+</h4><span>Matches Won</span></div>
-                        <div><h4 style="color: var(--primary-blue); font-size: 2rem;">20+</h4><span>Active Players</span></div>
+                <!-- News 2 -->
+                <div class="news-card">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">JAN 20, 2025</span>
+                        <h3 class="news-title">Training Camp Begins Next Week at Dangi Ground</h3>
+                        <a href="#" class="read-more">Read Full Story</a>
+                    </div>
+                </div>
+                <!-- News 3 -->
+                <div class="news-card">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-date">JAN 15, 2025</span>
+                        <h3 class="news-title">Victory against Kerabari XI in Friendly Match</h3>
+                        <a href="#" class="read-more">Read Full Story</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TEAM SECTION (MANAGEMENT + PLAYERS) -->
+    <!-- 5. SQUAD SECTION -->
     <section class="squad-section" id="squad">
         <div class="container">
-            <div class="section-title">The Team</div>
-
-            <!-- 1. MANAGEMENT TEAM -->
-            <div class="sub-title-wrapper">
-                <h3 class="sub-title">Management</h3>
+            <div class="section-header">
+                <h2 class="section-title">DCA Squad</h2>
             </div>
-            
-            <div class="management-grid">
-                <!-- Head Coach -->
-                <div class="player-card">
-                    <div class="badge-icon"><i class="fas fa-clipboard-list"></i></div>
-                    <div class="player-img-container">
-                        <!-- Replace with Coach Photo -->
-                        <img src="https://via.placeholder.com/300x300/1f2f4d/ffffff?text=Coach" alt="Coach">
+
+            <!-- Management -->
+            <div class="management-title"><span>TEAM MANAGEMENT</span></div>
+            <div class="squad-grid" style="justify-content: center; display: flex; flex-wrap: wrap;">
+                <!-- Coach -->
+                <div class="player-card" style="width: 250px;">
+                    <div class="role-badge"><i class="fas fa-clipboard"></i></div>
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/e1e1e1/003893?text=Coach" alt="Coach">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Mr. Dil Prasad Magar</h3>
-                        <p class="player-role">Head Coach</p>
+                        <h3 class="player-name">Dil Prasad Magar</h3>
+                        <div class="player-role">Head Coach</div>
                     </div>
                 </div>
-
-                <!-- Team Manager -->
-                <div class="player-card">
-                    <div class="badge-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="player-img-container">
-                        <!-- Replace with Manager Photo -->
-                        <img src="https://via.placeholder.com/300x300/1f2f4d/ffffff?text=Manager" alt="Manager">
+                <!-- Manager -->
+                <div class="player-card" style="width: 250px;">
+                    <div class="role-badge"><i class="fas fa-user-tie"></i></div>
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/e1e1e1/003893?text=Manager" alt="Manager">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Mr. Raman Bhandari</h3>
-                        <p class="player-role">Team Manager</p>
+                        <h3 class="player-name">Raman Bhandari</h3>
+                        <div class="player-role">Team Manager</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. PLAYERS SQUAD (Top 4) -->
-            <div class="sub-title-wrapper">
-                <h3 class="sub-title">Playing Squad</h3>
-            </div>
-
+            <!-- Players -->
+            <div class="management-title"><span>PLAYING XI</span></div>
             <div class="squad-grid">
-                <!-- Player 1 (Captain) -->
+                <!-- P1 -->
                 <div class="player-card">
-                    <div class="badge-icon">07</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Captain" alt="Captain">
+                    <div class="role-badge">C</div>
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Abhishek" alt="P1">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Abhishek Thapa</h3>
-                        <p class="player-role">Captain / All-Rounder</p>
+                        <div class="player-role">Captain / All-Rounder</div>
                     </div>
                 </div>
-
-                <!-- Player 2 -->
+                <!-- P2 -->
                 <div class="player-card">
-                    <div class="badge-icon">10</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    <div class="role-badge">VC</div>
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Yamphu" alt="P2">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Yamphu</h3>
-                        <p class="player-role">Vice Captain / Batsman</p>
+                        <div class="player-role">Vice Captain / Batsman</div>
                     </div>
                 </div>
-
-                <!-- Player 3 -->
+                <!-- P3 -->
                 <div class="player-card">
-                    <div class="badge-icon">18</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Dipson" alt="P3">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
-                        <p class="player-role">Fast Bowler</p>
+                        <div class="player-role">Fast Bowler</div>
                     </div>
                 </div>
-
-                <!-- Player 4 -->
+                <!-- P4 -->
                 <div class="player-card">
-                    <div class="badge-icon">45</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    <div class="role-badge">WK</div>
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Deewana" alt="P4">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Deewana Linkha Yakha</h3>
-                        <p class="player-role">Wicket Keeper</p>
+                        <h3 class="player-name">Deewana L. Yakha</h3>
+                        <div class="player-role">Wicket Keeper</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. HIDDEN SQUAD (Add more players here later) -->
+            <!-- Hidden Players -->
             <div class="squad-hidden" id="full-squad">
-                <!-- Example: Player 5 -->
+                <!-- P5 -->
                 <div class="player-card">
-                    <div class="badge-icon">99</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Player" alt="P5">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Player 5 Name</h3>
-                        <p class="player-role">Batsman</p>
+                        <h3 class="player-name">Player Name</h3>
+                        <div class="player-role">Batsman</div>
                     </div>
                 </div>
-                <!-- Example: Player 6 -->
+                <!-- P6 -->
                 <div class="player-card">
-                    <div class="badge-icon">88</div>
-                    <div class="player-img-container">
-                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    <div class="player-img">
+                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Player" alt="P6">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Player 6 Name</h3>
-                        <p class="player-role">Bowler</p>
+                        <h3 class="player-name">Player Name</h3>
+                        <div class="player-role">Bowler</div>
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align:center; margin-top:30px;">
-                <!-- Fixed Button with onclick event -->
+
+            <div style="text-align: center; margin-top: 40px;">
                 <button class="btn" id="toggle-btn" onclick="toggleSquad()">View Full Squad</button>
             </div>
         </div>
     </section>
 
-    <!-- MATCHES -->
-    <section class="match-section" id="matches">
+    <!-- 6. MATCH CENTER (Strip Style) -->
+    <section class="match-section" id="fixtures">
         <div class="container">
-            <div class="section-title">Match Center</div>
+            <h2 class="section-title" style="margin-bottom: 30px;">Match Center</h2>
             
-            <h4 style="margin-bottom: 20px; color: var(--accent-gold);">Recent Result</h4>
             <div class="match-card">
-                <div class="team">DCA (Dangi)</div>
-                <div class="vs">VS</div>
-                <div class="team">Kerabari XI</div>
-                <div class="match-result">DCA Won by 45 Runs</div>
+                <div>
+                    <span style="font-size: 0.8rem; opacity: 0.8;">RECENT MATCH</span>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+                        <div class="match-team">Dangi Cricket Association</div>
+                        <div class="match-vs">vs</div>
+                        <div class="match-team" style="opacity: 0.7;">Kerabari XI</div>
+                    </div>
+                </div>
+                <div class="match-score">DCA WON BY 45 RUNS</div>
             </div>
 
-            <h4 style="margin-bottom: 20px; margin-top: 40px; color: var(--accent-gold);">Next Fixture</h4>
-            <div class="match-card">
-                <div class="team">DCA (Dangi)</div>
-                <div class="vs">VS</div>
-                <div class="team">Biratnagar Club</div>
-                <div class="match-result" style="background: var(--white); color: var(--dark-gray);">
-                    <i class="far fa-calendar-alt"></i> Saturday, 10:00 AM | Dangi Ground
+            <div class="match-card" style="background: white; color: #333; border: none;">
+                <div>
+                    <span style="font-size: 0.8rem; color: var(--can-red); font-weight: bold;">UPCOMING FIXTURE</span>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+                        <div class="match-team" style="color: var(--can-blue);">Dangi Cricket Association</div>
+                        <div class="match-vs" style="color: #999;">vs</div>
+                        <div class="match-team" style="color: #666;">Biratnagar Club</div>
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 5px; color: #666;"><i class="far fa-clock"></i> Saturday, 10:00 AM | Dangi Ground</div>
                 </div>
+                <button class="btn" style="background: var(--can-blue);">Match Details</button>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- 7. PARTNERS / SPONSORS (New) -->
+    <section class="partners-section">
+        <div class="container">
+            <h4 style="text-align: center; color: #999; margin-bottom: 20px;">OUR PARTNERS</h4>
+            <div class="partners-grid">
+                <!-- Placeholders for Sponsor Logos -->
+                <img src="https://via.placeholder.com/150x50/333/fff?text=SPONSOR+1" alt="Partner">
+                <img src="https://via.placeholder.com/150x50/333/fff?text=SPONSOR+2" alt="Partner">
+                <img src="https://via.placeholder.com/150x50/333/fff?text=SPONSOR+3" alt="Partner">
+                <img src="https://via.placeholder.com/150x50/333/fff?text=SPONSOR+4" alt="Partner">
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
     <footer id="contact">
         <div class="container">
-            <h2 style="color: var(--white); margin-bottom: 20px;">DCA</h2>
-            <p>Join us on the field or support us from the stands.</p>
-            <div class="footer-socials" style="margin: 20px 0;">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="footer-grid">
+                <div class="footer">
+                    <h3>DCA</h3>
+                    <p>The official governing body of cricket in Dangi, Kerabari-6. Committed to excellence and community.</p>
+                </div>
+                <div class="footer footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">The Squad</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Kerabari 6 & 7, Dangi, Nepal</p>
+                    <p><i class="fas fa-phone"></i> +977 9810430546</p>
+                    <p><i class="fas fa-envelope"></i> contact@dca-cricket.com</p>
+                </div>
             </div>
-            <p><i class="fas fa-map-marker-alt"></i> Kerabari 6 & 7, Dangi, Nepal</p>
-            <p><i class="fas fa-envelope"></i> contact@dca-cricket.com</p>
-            <div style="margin-top: 30px; font-size: 0.8rem; border-top: 1px solid #444; padding-top: 10px;">
-                &copy; 2025 Dangi Cricket Association. Built by Raman Bhandari.
+            <div class="copyright">
+                &copy; 2025 Dangi Cricket Association. All Rights Reserved. | Designed by Raman Bhandari.
             </div>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // 1. Mobile Menu Toggle
+        // Mobile Menu
         function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
+            const nav = document.getElementById('nav-links');
             nav.classList.toggle('active');
         }
 
-        // 2. Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                document.getElementById('nav-menu').classList.remove('active');
-            });
-        });
-
-        // 3. Toggle Squad Function (FIXED)
+        // Squad Toggle
         function toggleSquad() {
             const hiddenSquad = document.getElementById('full-squad');
             const btn = document.getElementById('toggle-btn');
@@ -375,8 +551,6 @@
             if (hiddenSquad.classList.contains('active')) {
                 hiddenSquad.classList.remove('active');
                 btn.innerText = "View Full Squad";
-                // Optional: Scroll back up slightly
-                document.getElementById('squad').scrollIntoView({ behavior: 'smooth' });
             } else {
                 hiddenSquad.classList.add('active');
                 btn.innerText = "Show Less";
