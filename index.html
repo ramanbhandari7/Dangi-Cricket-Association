@@ -109,13 +109,14 @@
         }
         .player-card:hover { border-bottom-color: var(--can-red); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
         
-        /* IMAGE FIX: Object Position Top ensures heads aren't cut off */
-        .player-img { height: 280px; background: #eee; overflow: hidden; position: relative; }
+        /* --- IMAGE FIX FOR BIG SCREENS --- */
+        /* Increased height to 340px to create a vertical aspect ratio */
+        .player-img { height: 340px; background: #eee; overflow: hidden; position: relative; }
         .player-img img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            object-position: top center; /* This focuses on the face/head */
+            object-position: top center; /* Keeps face visible */
         }
 
         .player-info { padding: 20px; text-align: center; }
@@ -185,7 +186,10 @@
             .match-card { flex-direction: column; gap: 15px; text-align: center; }
             .match-vs { padding: 10px 0; transform: rotate(90deg); }
             
-            .squad-grid { grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); } /* Full width on mobile for better image view */
+            .squad-grid { grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); } 
+            
+            /* Adjust image height specifically for mobile if needed */
+            .player-img { height: 320px; }
         }
     </style>
 </head>
@@ -211,7 +215,7 @@
         <div class="container nav-inner">
             <div class="logo">
                 <i class="fas fa-cricket" style="color: var(--can-red); margin-right:10px;"></i>
-                Dangi <span>Cricket</span>Association
+                Dangi <span>Cricket</span>
             </div>
             <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
             <ul class="nav-links" id="nav-links">
@@ -230,7 +234,6 @@
             <div class="hero-text fade-in-up">
                 <h1>REPRESENTING<br>THE PRIDE OF DANGI</h1>
                 <p>Developing talent, fostering sportsmanship, and aiming for glory.</p>
-                <!-- WHATSAPP LINK ADDED HERE -->
                 <a href="https://wa.me/9779810430546" target="_blank" class="btn">
                     <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Join The Club
                 </a>
@@ -252,7 +255,7 @@
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-clipboard"></i></div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/e1e1e1/003893?text=Coach" alt="Dil Prasad Magar">
+                        <img src="https://via.placeholder.com/300x340/e1e1e1/003893?text=Coach" alt="Dil Prasad Magar">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
@@ -263,8 +266,7 @@
                 <div class="player-card fade-in-up" style="transition-delay: 0.1s;">
                     <div class="role-badge"><i class="fas fa-user-tie"></i></div>
                     <div class="player-img">
-                        <!-- Make sure raman.jpg is in the same folder -->
-                        <img src="raman.jpg" alt="Raman Bhandari" onerror="this.src='https://via.placeholder.com/300x300/e1e1e1/003893?text=Manager'">
+                        <img src="raman.jpg" alt="Raman Bhandari" onerror="this.src='https://via.placeholder.com/300x340/e1e1e1/003893?text=Manager'">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Raman Bhandari</h3>
@@ -279,7 +281,7 @@
                 <div class="player-card fade-in-up">
                     <div class="role-badge">C</div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Abhishek" alt="P1">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Abhishek" alt="P1">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Abhishek Thapa</h3>
@@ -289,7 +291,7 @@
                 <div class="player-card fade-in-up" style="transition-delay: 0.1s;">
                     <div class="role-badge">VC</div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Yamphu" alt="P2">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Yamphu" alt="P2">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Yamphu</h3>
@@ -298,7 +300,7 @@
                 </div>
                 <div class="player-card fade-in-up" style="transition-delay: 0.2s;">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Dipson" alt="P3">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Dipson" alt="P3">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
@@ -308,7 +310,7 @@
                 <div class="player-card fade-in-up" style="transition-delay: 0.3s;">
                     <div class="role-badge">WK</div>
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Deewana" alt="P4">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Deewana" alt="P4">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Deewana L. Yakha</h3>
@@ -321,20 +323,20 @@
             <div class="squad-hidden" id="full-squad">
                 <div class="player-card">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Player" alt="P5">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Player" alt="P5">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Manish Khadka</h3>
-                        <div class="player-role">Spin Bowler/Batsman</div>
+                        <h3 class="player-name">Player Name</h3>
+                        <div class="player-role">Batsman</div>
                     </div>
                 </div>
                 <div class="player-card">
                     <div class="player-img">
-                        <img src="https://via.placeholder.com/300x300/003893/ffffff?text=Player" alt="P6">
+                        <img src="https://via.placeholder.com/300x340/003893/ffffff?text=Player" alt="P6">
                     </div>
                     <div class="player-info">
-                        <h3 class="player-name">Nawaraj Khadka</h3>
-                        <div class="player-role">Batsman</div>
+                        <h3 class="player-name">Player Name</h3>
+                        <div class="player-role">Bowler</div>
                     </div>
                 </div>
             </div>
@@ -406,7 +408,7 @@
                         <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
                     </div>
                     <div class="news-content">
-                        <h3 class="news-title">Victory against Kerabari X in Friendly Match</h3>
+                        <h3 class="news-title">Victory against Kerabari XI in Friendly Match</h3>
                         <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
