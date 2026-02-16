@@ -74,7 +74,24 @@
         
         .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         
-        /* Center the management cards if there are only 2 */
+        /* Hidden Squad Section Styles */
+        .squad-hidden {
+            display: none; /* Hidden by default */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .squad-hidden.active {
+            display: grid; /* Becomes grid when active */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .management-grid { 
             display: flex; 
             flex-wrap: wrap; 
@@ -203,7 +220,7 @@
                 </div>
             </div>
 
-            <!-- 2. PLAYERS SQUAD -->
+            <!-- 2. PLAYERS SQUAD (Top 4) -->
             <div class="sub-title-wrapper">
                 <h3 class="sub-title">Playing Squad</h3>
             </div>
@@ -257,9 +274,36 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 3. HIDDEN SQUAD (Add more players here later) -->
+            <div class="squad-hidden" id="full-squad">
+                <!-- Example: Player 5 -->
+                <div class="player-card">
+                    <div class="badge-icon">99</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Player 5 Name</h3>
+                        <p class="player-role">Batsman</p>
+                    </div>
+                </div>
+                <!-- Example: Player 6 -->
+                <div class="player-card">
+                    <div class="badge-icon">88</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Player 6 Name</h3>
+                        <p class="player-role">Bowler</p>
+                    </div>
+                </div>
+            </div>
             
             <div style="text-align:center; margin-top:30px;">
-                <button class="btn">View Full Squad</button>
+                <!-- Fixed Button with onclick event -->
+                <button class="btn" id="toggle-btn" onclick="toggleSquad()">View Full Squad</button>
             </div>
         </div>
     </section>
@@ -308,10 +352,13 @@
     </footer>
 
     <script>
+        // 1. Mobile Menu Toggle
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             nav.classList.toggle('active');
         }
+
+        // 2. Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -319,6 +366,22 @@
                 document.getElementById('nav-menu').classList.remove('active');
             });
         });
+
+        // 3. Toggle Squad Function (FIXED)
+        function toggleSquad() {
+            const hiddenSquad = document.getElementById('full-squad');
+            const btn = document.getElementById('toggle-btn');
+            
+            if (hiddenSquad.classList.contains('active')) {
+                hiddenSquad.classList.remove('active');
+                btn.innerText = "View Full Squad";
+                // Optional: Scroll back up slightly
+                document.getElementById('squad').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                hiddenSquad.classList.add('active');
+                btn.innerText = "Show Less";
+            }
+        }
     </script>
 </body>
 </html>
