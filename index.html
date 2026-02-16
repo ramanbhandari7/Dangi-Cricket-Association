@@ -1,1 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of Dangi Cricket Association (DCA).">
+    <title>DCA | Dangi Cricket Association</title>
+    
+    <!-- Fonts: Oswald for headings (sporty look), Open Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. THEME VARIABLES --- */
+        :root {
+            --primary-blue: #003366;   /* Dark Blue (Jersey Color) */
+            --accent-gold: #FFD700;    /* Gold (Victory/Highlight) */
+            --cricket-red: #D32F2F;    /* Ball Color */
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --dark-gray: #333333;
+        }
 
+        /* --- 2. GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-blue);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--cricket-red);
+            margin: 10px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--cricket-red);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        /* --- 3. HEADER & NAV --- */
+        header {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu a:hover { color: var(--accent-gold); }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- 5. ABOUT US --- */
+        .about-section { padding: 80px 0; background: var(--white); }
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+        .about-image img {
+            border-radius: 10px;
+            box-shadow: 10px 10px 0px var(--accent-gold);
+        }
+
+        /* --- 6. SQUAD (PLAYER CARDS) --- */
+        .squad-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .player-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            position: relative;
+        }
+
+        .player-card:hover { transform: translateY(-10px); }
+
+        .player-img-container {
+            height: 250px;
+            background: #ddd;
+            overflow: hidden;
+        }
+        
+        .player-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .player-info { padding: 20px; }
+        .player-name { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 5px; }
+        .player-role { 
+            color: var(--cricket-red); 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+        }
+        .jersey-number {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* --- 7. MATCH CENTER --- */
+        .match-section { padding: 80px 0; background: var(--primary-blue); color: var(--white); }
+        .match-section .section-title { color: var(--white); }
+        
+        .match-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .team { font-size: 1.5rem; font-family: 'Oswald', sans-serif; font-weight: bold; flex: 1; text-align: center; }
+        .vs { font-size: 1.2rem; color: var(--accent-gold); padding: 0 20px; font-weight: bold; }
+        .match-result {
+            background: var(--cricket-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* --- 8. FOOTER --- */
+        footer {
+            background: var(--dark-gray);
+            color: #888;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-socials a {
+            color: var(--white);
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-socials a:hover { color: var(--accent-gold); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .hamburger { display: block; }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-blue);
+                padding: 20px;
+                text-align: center;
+            }
+            .nav-menu.active { display: flex; }
+            .match-card { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-cricket"></i> DCA
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#squad">The Squad</a></li>
+                <li><a href="#matches">Matches</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Dangi Cricket Association</h1>
+            <p>Passion. Integrity. Victory.</p>
+            <a href="#squad" class="btn">Meet the Team</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">About The Club</div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <!-- Placeholder for Team Group Photo -->
+                    <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="DCA Team Huddle">
+                </div>
+                <div class="about-text">
+                    <h3>We Are DCA</h3>
+                    <p style="margin-bottom: 15px;">Established to bring cricket glory to Dangi, the Dangi Cricket Association represents the spirit of our community. We believe in playing hard, respecting the opposition, and nurturing local talent.</p>
+                    <p>From local tournaments to friendly matches, DCA is more than just a team; we are a family united by the love of the game.</p>
+                    
+                    <div style="margin-top: 20px; display: flex; gap: 20px;">
+                        <div>
+                            <h4 style="color: var(--primary-blue); font-size: 2rem;">15+</h4>
+                            <span>Matches Won</span>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--primary-blue); font-size: 2rem;">20+</h4>
+                            <span>Active Players</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SQUAD SECTION -->
+    <section class="squad-section" id="squad">
+        <div class="container">
+            <div class="section-title">The Squad</div>
+            <div class="squad-grid">
+                
+                <!-- Player 1 (Captain) -->
+                <div class="player-card">
+                    <div class="jersey-number">07</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Captain" alt="Captain">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Raman Bhandari</h3>
+                        <p class="player-role">Captain / All-Rounder</p>
+                    </div>
+                </div>
+
+                <!-- Player 2 -->
+                <div class="player-card">
+                    <div class="jersey-number">10</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suresh Thapa</h3>
+                        <p class="player-role">Vice Captain / Batsman</p>
+                    </div>
+                </div>
+
+                <!-- Player 3 -->
+                <div class="player-card">
+                    <div class="jersey-number">18</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Bikash Rai</h3>
+                        <p class="player-role">Fast Bowler</p>
+                    </div>
+                </div>
+
+                <!-- Player 4 -->
+                <div class="player-card">
+                    <div class="jersey-number">45</div>
+                    <div class="player-img-container">
+                        <img src="https://via.placeholder.com/300x300/003366/ffffff?text=Player" alt="Player">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Anil Gurung</h3>
+                        <p class="player-role">Wicket Keeper</p>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <button class="btn">View All Players</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATCHES SECTION -->
+    <section class="match-section" id="matches">
+        <div class="container">
+            <div class="section-title">Match Center</div>
+            
+            <!-- Recent Result -->
+            <h4 style="margin-bottom: 20px; color: var(--accent-gold);">Recent Result</h4>
+            <div class="match-card">
+                <div class="team">DCA (Dangi)</div>
+                <div class="vs">VS</div>
+                <div class="team">Kerabari XI</div>
+                <div class="match-result">DCA Won by 45 Runs</div>
+            </div>
+
+            <!-- Upcoming Fixture -->
+            <h4 style="margin-bottom: 20px; margin-top: 40px; color: var(--accent-gold);">Next Fixture</h4>
+            <div class="match-card">
+                <div class="team">DCA (Dangi)</div>
+                <div class="vs">VS</div>
+                <div class="team">Biratnagar Club</div>
+                <div class="match-result" style="background: var(--white); color: var(--dark-gray);">
+                    <i class="far fa-calendar-alt"></i> Saturday, 10:00 AM | Dangi Ground
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <h2 style="color: var(--white); margin-bottom: 20px;">DCA</h2>
+            <p>Join us on the field or support us from the stands.</p>
+            
+            <div class="footer-socials" style="margin: 20px 0;">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <p><i class="fas fa-map-marker-alt"></i> Kerabari 6, Dangi, Nepal</p>
+            <p><i class="fas fa-envelope"></i> contact@dca-cricket.com</p>
+            
+            <div style="margin-top: 30px; font-size: 0.8rem; border-top: 1px solid #444; padding-top: 10px;">
+                &copy; 2025 Dangi Cricket Association. Built by Raman Bhandari.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth Scroll adjustment
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close menu on click (mobile)
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
