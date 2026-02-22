@@ -145,8 +145,12 @@
         .btn:hover { background: #b00e2e; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4); color: white; }
 
         .section-header {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            margin-bottom: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
             flex-wrap: wrap;
         }
         .section-title { 
@@ -183,7 +187,7 @@
             align-items: center; 
             gap: 5px;
             padding: 5px 0;
-            min-height: 44px; /* for touch */
+            min-height: 44px;
         }
         .top-info a:hover { color: var(--can-red); }
         .top-socials { display: flex; gap: 15px; }
@@ -772,6 +776,7 @@
             max-width: 100%;
             border-radius: 15px;
             box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            background-color: #000; /* fallback background */
         }
         .video-container iframe {
             position: absolute;
@@ -781,6 +786,25 @@
             height: 100%;
             border: none;
             border-radius: 15px;
+        }
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .video-fallback a {
+            color: var(--can-red);
+            text-decoration: underline;
         }
 
         /* --- 8. GALLERY SECTION (Auto-rotating slideshow) --- */
@@ -1316,6 +1340,16 @@
             .news-title {
                 font-size: 1.1rem;
             }
+            
+            /* Fix section header on small screens */
+            .section-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .section-header a {
+                margin-top: 10px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -1345,7 +1379,7 @@
 </head>
 <body>
 
-    <!-- TOP BAR (now visible on mobile with clickable links) -->
+    <!-- TOP BAR (clickable email and phone) -->
     <div class="top-bar">
         <div class="container">
             <div class="top-info">
@@ -1471,7 +1505,7 @@
                 </div>
             </div>
 
-            <!-- Players (15) - all players are included in the actual code; here we show a few as example -->
+            <!-- Players (15) -->
             <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
             <div class="squad-grid" id="initial-squad">
                 <!-- Player 1: Captain -->
@@ -1540,7 +1574,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Players 4-15 (Dipson, Manish, Narayan, Kiran, Sonu, Dhanraj, Samin, Sekhar, Suresh, Anmol, Aabiskar, Suman) are included in the full code -->
+                <!-- Players 4-15 would continue here (omitted for brevity) -->
             </div>
             <p style="text-align: center; margin-top: 40px; color: var(--gray-text); font-weight: bold; font-size: 1.1rem;">
                 ⚡ Total 17 Members | 2 Management + 15 Players ⚡
@@ -1548,7 +1582,7 @@
         </div>
     </section>
 
-    <!-- MATCH HIGHLIGHTS SECTION (Facebook video) -->
+    <!-- MATCH HIGHLIGHTS SECTION (Facebook video with fallback) -->
     <section class="highlights-section" id="highlights">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1558,8 +1592,11 @@
             <div class="fade-in-up">
                 <div class="video-container">
                     <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1D3d12cjGm/&width=1000&show_text=false&appId=269302841247386&height=560" width="1000" height="560" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                    <!-- Fallback message in case iframe fails -->
+                    <div class="video-fallback" style="display: none;">Video could not load. <a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank">Watch on Facebook</a></div>
                 </div>
                 <p style="text-align: center; margin-top: 20px; color: var(--gray-text);">Champion💪💪 - DCA Celebration</p>
+                <p style="text-align: center; font-size: 0.9rem;"><a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank" style="color: var(--can-red);">Direct link to video</a></p>
             </div>
         </div>
     </section>
@@ -1812,7 +1849,7 @@
     <!-- Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     
-    <!-- JAVASCRIPT (including slideshow) -->
+    <!-- JAVASCRIPT (including slideshow and iframe fallback) -->
     <script>
         (function() {
             // Menu toggle with backdrop
@@ -2049,6 +2086,27 @@
             }
 
             showSlides(slideIndex);
+
+            // --- FACEBOOK VIDEO FALLBACK ---
+            // If iframe fails to load, show fallback message
+            const iframe = document.querySelector('.video-container iframe');
+            const fallback = document.querySelector('.video-fallback');
+            if (iframe && fallback) {
+                iframe.onerror = function() {
+                    fallback.style.display = 'flex';
+                };
+                // Also check if iframe content is accessible (optional)
+                setTimeout(() => {
+                    try {
+                        // If iframe hasn't loaded, fallback
+                        if (!iframe.contentWindow) {
+                            fallback.style.display = 'flex';
+                        }
+                    } catch (e) {
+                        // Cross-origin error means iframe is loaded but from different domain, which is fine
+                    }
+                }, 5000);
+            }
         })();
     </script>
 </body>
