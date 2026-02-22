@@ -373,7 +373,7 @@
         }
         .hero p { color: var(--white); }
 
-        /* --- 5. TEAM PHOTO SECTION (using currentteam.jpg) --- */
+        /* --- 5. TEAM PHOTO SECTION --- */
         .team-photo-section {
             padding: 60px 0;
             background: var(--white);
@@ -763,51 +763,46 @@
             }
         }
 
-        /* --- 7. HIGHLIGHTS SECTION (Facebook video embed) --- */
+        /* --- 7. HIGHLIGHTS SECTION (reliable card with direct link) --- */
         .highlights-section {
             padding: 80px 0;
             background: var(--light-bg);
         }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
-            background-color: #000; /* fallback background */
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 15px;
-        }
-        .video-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #333;
-            color: white;
+        .highlight-card {
+            background: linear-gradient(135deg, var(--can-blue), #002b6b);
+            border-radius: 20px;
+            padding: 60px 40px;
             text-align: center;
-            padding: 20px;
-            border-radius: 15px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-        .video-fallback a {
+        .highlight-card i {
+            font-size: 4rem;
+            margin-bottom: 20px;
             color: var(--can-red);
-            text-decoration: underline;
+        }
+        .highlight-card h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .highlight-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .highlight-card .btn {
+            background: var(--can-red);
+            color: white;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+        }
+        .highlight-card .btn:hover {
+            background: #b00e2e;
+            transform: translateY(-3px);
         }
 
-        /* --- 8. GALLERY SECTION (Auto-rotating slideshow with 10 images) --- */
+        /* --- 8. GALLERY SECTION (Auto-rotating slideshow) --- */
         .gallery-section {
             padding: 80px 0;
             background: var(--white);
@@ -841,7 +836,6 @@
             font-weight: bold;
             text-align: center;
         }
-        /* Navigation arrows */
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -866,7 +860,6 @@
         .prev:hover, .next:hover {
             background-color: rgba(220,20,60,0.8);
         }
-        /* Dots */
         .dots-container {
             text-align: center;
             padding: 20px 0;
@@ -884,7 +877,6 @@
         .active-dot, .dot:hover {
             background-color: var(--can-red);
         }
-        /* Pause on hover */
         .slideshow-container:hover .mySlides {
             animation-play-state: paused;
         }
@@ -1079,36 +1071,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- 12. SPONSORS CAROUSEL --- */
-        .sponsors-section {
-            padding: 40px 0;
-            background: var(--white);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .sponsors-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-        }
-        .sponsor-item {
-            opacity: 0.7;
-            transition: var(--transition);
-            filter: grayscale(100%);
-        }
-        .sponsor-item:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-        .sponsor-item img {
-            max-height: 60px;
-            width: auto;
-        }
-
-        /* --- 13. FOOTER with newsletter --- */
+        /* --- 12. FOOTER with newsletter (sponsors removed) --- */
         footer { 
             background: #111; 
             color: #999; 
@@ -1349,6 +1312,13 @@
             .section-header a {
                 margin-top: 10px;
             }
+            
+            .highlight-card {
+                padding: 40px 20px;
+            }
+            .highlight-card h3 {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -1437,7 +1407,7 @@
         </div>
     </section>
 
-    <!-- TEAM PHOTO SECTION (currentteam.jpg) -->
+    <!-- TEAM PHOTO SECTION -->
     <section class="team-photo-section" id="team-photo">
         <div class="container">
             <h2 class="section-title fade-in-up">Our Current Squad</h2>
@@ -1458,7 +1428,7 @@
             <!-- Management (2) -->
             <div class="management-title fade-in-up"><span>⚡ TEAM MANAGEMENT ⚡</span></div>
             <div class="squad-grid">
-                <!-- Coach - Dil (updated Facebook link) -->
+                <!-- Coach - Dil -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-clipboard"></i></div>
                     <div class="player-img">
@@ -1480,7 +1450,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Manager - Raman (updated Facebook link) -->
+                <!-- Manager - Raman -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-user-tie"></i></div>
                     <div class="player-img">
@@ -1504,10 +1474,10 @@
                 </div>
             </div>
 
-            <!-- Players (15) - showing first three with updated Avishek link, others unchanged -->
+            <!-- Players (15) - showing first three with updated links -->
             <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
             <div class="squad-grid" id="initial-squad">
-                <!-- Player 1: Captain - Avishek (updated Facebook link) -->
+                <!-- Player 1: Captain - Avishek -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">C</div>
                     <div class="player-img">
@@ -1529,7 +1499,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Player 2: Vice Captain - Sanjay (team page link) -->
+                <!-- Player 2: Vice Captain - Sanjay (team page) -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">VC</div>
                     <div class="player-img">
@@ -1551,7 +1521,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Player 3: Diwana Linka Yakha (team page link) -->
+                <!-- Player 3: Diwana (team page) -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">WK</div>
                     <div class="player-img">
@@ -1573,7 +1543,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Players 4-15 would continue here with team page links (omitted for brevity) -->
+                <!-- Players 4-15 would continue here (omitted for brevity) -->
             </div>
             <p style="text-align: center; margin-top: 40px; color: var(--gray-text); font-weight: bold; font-size: 1.1rem;">
                 ⚡ Total 17 Members | 2 Management + 15 Players ⚡
@@ -1581,25 +1551,26 @@
         </div>
     </section>
 
-    <!-- MATCH HIGHLIGHTS SECTION -->
+    <!-- MATCH HIGHLIGHTS SECTION (reliable card) -->
     <section class="highlights-section" id="highlights">
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">Match Highlights</h2>
-                <a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank" style="color: var(--can-red); font-weight: bold;">Watch on Facebook <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="fade-in-up">
-                <div class="video-container">
-                    <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/v/1D3d12cjGm/&width=1000&show_text=false&appId=269302841247386&height=560" width="1000" height="560" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                    <div class="video-fallback" style="display: none;">Video could not load. <a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank">Watch on Facebook</a></div>
+                <div class="highlight-card">
+                    <i class="fab fa-facebook"></i>
+                    <h3>Champion Celebration 🏆</h3>
+                    <p>Watch the DCA team celebrate their victory on Facebook</p>
+                    <a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank" class="btn">
+                        <i class="fab fa-facebook-f" style="margin-right:8px;"></i> Watch on Facebook
+                    </a>
                 </div>
-                <p style="text-align: center; margin-top: 20px; color: var(--gray-text);">Champion💪💪 - DCA Celebration</p>
-                <p style="text-align: center; font-size: 0.9rem;"><a href="https://www.facebook.com/share/v/1D3d12cjGm/" target="_blank" style="color: var(--can-red);">Direct link to video</a></p>
             </div>
         </div>
     </section>
 
-    <!-- AUTO-ROTATING GALLERY SECTION (now with 10 images) -->
+    <!-- AUTO-ROTATING GALLERY SECTION (10 images) -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1670,7 +1641,7 @@
         </div>
     </section>
 
-    <!-- NEXT FIXTURE (unchanged) -->
+    <!-- NEXT FIXTURE -->
     <section class="match-section" id="fixture">
         <div class="container">
             <h2 class="section-title fade-in-up" style="margin-bottom: 40px;">Next Match</h2>
@@ -1728,7 +1699,7 @@
         </div>
     </section>
 
-    <!-- NEWS SECTION with share buttons (unchanged) -->
+    <!-- NEWS SECTION with share buttons -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1794,25 +1765,13 @@
         </div>
     </section>
 
-    <!-- SPONSORS CAROUSEL (unchanged) -->
-    <section class="sponsors-section">
-        <div class="container">
-            <div class="sponsors-grid">
-                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/003893/ffffff?text=Sponsor+1" alt="Sponsor 1" width="150" height="60" loading="lazy"></div>
-                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/DC143C/ffffff?text=Sponsor+2" alt="Sponsor 2" width="150" height="60" loading="lazy"></div>
-                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/666666/ffffff?text=Sponsor+3" alt="Sponsor 3" width="150" height="60" loading="lazy"></div>
-                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/003893/ffffff?text=Sponsor+4" alt="Sponsor 4" width="150" height="60" loading="lazy"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER with newsletter (unchanged) -->
+    <!-- FOOTER (sponsors removed) -->
     <footer id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer">
                     <h3>DCA</h3>
-                    <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. Committed to excellence, integrity, and community spirit since 2020.</p>
+                    <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. Committed to excellence, integrity, and community spirit since 2014.</p>
                     <div style="margin-top: 20px;">
                         <a href="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/" target="_blank" aria-label="Facebook" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Twitter" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
@@ -1827,9 +1786,6 @@
                         <li><a href="#team-photo"><i class="fas fa-angle-right" style="margin-right:8px;"></i> The Squad</a></li>
                         <li><a href="#highlights"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Highlights</a></li>
                         <li><a href="#gallery"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Gallery</a></li>
-                        <li><a href="#fixture"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Fixtures</a></li>
-                        <li><a href="#news"><i class="fas fa-angle-right" style="margin-right:8px;"></i> News</a></li>
-                        <li><a href="#contact"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer">
@@ -2111,22 +2067,6 @@
             }
 
             showSlides(slideIndex);
-
-            // --- FACEBOOK VIDEO FALLBACK ---
-            const iframe = document.querySelector('.video-container iframe');
-            const fallback = document.querySelector('.video-fallback');
-            if (iframe && fallback) {
-                iframe.onerror = function() {
-                    fallback.style.display = 'flex';
-                };
-                setTimeout(() => {
-                    try {
-                        if (!iframe.contentWindow) {
-                            fallback.style.display = 'flex';
-                        }
-                    } catch (e) {}
-                }, 5000);
-            }
         })();
     </script>
 </body>
