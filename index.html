@@ -6,7 +6,2005 @@
     <meta name="description" content="Official website of Dangi Cricket Association (DCA). Discover squad, fixtures, gallery, and latest news.">
     <meta name="keywords" content="DCA, Dangi Cricket, cricket Nepal, Kerabari, cricket team, Raman Bhandari">
     <title>DCA | Dangi Cricket Association</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of Dangi Cricket Association (DCA). Discover squad, fixtures, gallery, and latest news.">
+    <meta name="keywords" content="DCA, Dangi Cricket, cricket Nepal, Kerabari, cricket team, Raman Bhandari">
+    <title>DCA | Dangi Cricket Association</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lightbox for Gallery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsTeam",
+        "name": "Dangi Cricket Association",
+        "sport": "Cricket",
+        "location": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Kerabari",
+                "addressRegion": "Province 1",
+                "addressCountry": "Nepal"
+            }
+        },
+        "member": [
+            {"@type": "Person", "name": "Avishek Thapa", "role": "Captain"},
+            {"@type": "Person", "name": "Sanjay Yamphu Rai", "role": "Vice Captain"}
+        ],
+        "coach": {"@type": "Person", "name": "Dil Prasad Magar"},
+        "memberOf": {"@type": "Organization", "name": "DCA"}
+    }
+    </script>
+
+    <style>
+        /* --- 1. THEME VARIABLES (with dark mode support) --- */
+        :root {
+            --can-blue: #003893;
+            --can-red: #DC143C;
+            --white: #ffffff;
+            --light-bg: #f5f6f8;
+            --dark-text: #222222;
+            --gray-text: #666666;
+            --border-color: #e1e1e1;
+            --transition: all 0.3s ease-in-out;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #1e1e1e;
+                --white: #2d2d2d;
+                --dark-text: #f0f0f0;
+                --gray-text: #bbbbbb;
+                --border-color: #444;
+            }
+            body { background-color: #1a1a1a; color: #f0f0f0; }
+            .player-card, .news-card, .match-card, .gallery-item, footer { background-color: #2d2d2d; }
+        }
+
+        /* --- 2. GLOBAL RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: var(--white); 
+            color: var(--dark-text); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+
+        h1, h2, h3, h4 { 
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+            color: var(--can-blue);
+        }
+        a { text-decoration: none; transition: var(--transition); color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; height: auto; }
+        .container { width: 90%; max-width: 1200px; margin: auto; padding: 0 15px; }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* --- BUTTONS & ACCESSIBILITY FOCUS --- */
+        .btn, button, .filter-btn, .nav-links a, .footer-links a {
+            transition: var(--transition);
+        }
+        :focus-visible {
+            outline: 3px solid var(--can-red);
+            outline-offset: 2px;
+        }
+
+        .btn { 
+            display: inline-block; padding: 12px 30px; 
+            background: var(--can-red); color: var(--white); 
+            font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase;
+            border: none; cursor: pointer; font-size: 0.9rem; border-radius: 2px;
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 44px; min-height: 44px;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn:hover { background: #b00e2e; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4); color: white; }
+
+        .section-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .section-title { 
+            font-size: clamp(1.8rem, 5vw, 2.5rem); 
+            border-bottom: 4px solid var(--can-red); 
+            padding-bottom: 6px; 
+            margin-bottom: -12px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--can-red);
+            animation: slideLine 3s infinite;
+        }
+        @keyframes slideLine {
+            0% { left: 0; width: 50%; }
+            50% { left: 50%; width: 50%; }
+            100% { left: 0; width: 50%; }
+        }
+
+        /* --- 3. HEADER & NAV (improved mobile) --- */
+        .top-bar { background-color: var(--can-blue); color: var(--white); padding: 10px 0; font-size: 0.85rem; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .top-info span { margin-right: 20px; }
+        .top-socials a { margin-left: 15px; color: var(--white); display: inline-block; min-width: 30px; text-align: center; }
+        .top-socials a:hover { color: var(--can-red); transform: translateY(-2px); }
+        
+        nav { background: var(--white); box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { 
+            font-size: clamp(1rem, 4vw, 1.8rem); 
+            font-family: 'Oswald', sans-serif; 
+            font-weight: bold; 
+            color: var(--can-blue); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            white-space: nowrap;
+        }
+        .logo-img {
+            height: 45px;
+            width: auto;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo:hover .logo-img {
+            transform: rotate(360deg);
+        }
+        .logo span { color: var(--can-red); }
+        .logo-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { 
+            font-weight: 600; 
+            color: var(--dark-text); 
+            text-transform: uppercase; 
+            font-size: 0.95rem; 
+            position: relative;
+            padding: 5px 0;
+            white-space: nowrap;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--can-red);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+        .nav-links a:hover { color: var(--can-red); }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--can-blue); min-width: 44px; text-align: center; }
+
+        /* Mobile menu improvements */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { 
+                position: fixed; 
+                top: 0; 
+                right: -100%; 
+                width: 80%; 
+                max-width: 320px;
+                height: 100vh;
+                background: var(--white); 
+                flex-direction: column; 
+                padding: 80px 20px 30px; 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1); 
+                transition: 0.4s ease; 
+                gap: 20px;
+                z-index: 999;
+                overflow-y: auto;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { 
+                font-size: 1.2rem; 
+                display: block;
+                padding: 15px 0;
+            }
+            .nav-links .close-menu {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--can-red);
+            }
+            .menu-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                backdrop-filter: blur(3px);
+                z-index: 998;
+                display: none;
+            }
+            .menu-backdrop.active { display: block; }
+        }
+
+        /* --- 4. HERO WITH VIDEO --- */
+        .hero {
+            height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,56,147,0.7), rgba(220,20,60,0.7));
+            z-index: -1;
+        }
+        
+        .hero-text { 
+            max-width: 700px; 
+            border-left: 6px solid var(--can-red); 
+            padding-left: 30px; 
+            animation: slideRight 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        .hero h1 { 
+            font-size: clamp(2rem, 8vw, 4rem); 
+            line-height: 1.1; 
+            margin-bottom: 20px; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            color: var(--white);
+        }
+        .hero p { color: var(--white); }
+
+        /* --- 5. TEAM PHOTO SECTION (new, separate from squad) --- */
+        .team-photo-section {
+            padding: 60px 0;
+            background: var(--white);
+            text-align: center;
+        }
+        .team-photo-section h2 {
+            margin-bottom: 30px;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+        }
+        .team-photo-section img {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            margin: 0 auto;
+        }
+
+        /* --- 6. SQUAD SECTION --- */
+        .squad-section { padding: 80px 0; background: var(--light-bg); position: relative; }
+        .squad-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M20,50 Q35,30 50,50 T80,50" stroke="%23003893" fill="none" stroke-width="2"/><circle cx="30" cy="40" r="3" fill="%23DC143C"/><circle cx="70" cy="60" r="3" fill="%23DC143C"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+        }
+        .management-title { text-align: center; margin: 40px 0 30px; position: relative; }
+        .management-title span { 
+            background: var(--light-bg); 
+            padding: 0 20px; 
+            position: relative; 
+            z-index: 2; 
+            color: var(--can-red);
+            font-weight: bold; 
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+        .management-title::before { 
+            content:''; 
+            position: absolute; 
+            width: 100%; 
+            height: 2px; 
+            background: linear-gradient(90deg, transparent, var(--can-red), transparent);
+            top: 50%; 
+            left: 0; 
+            z-index: 1; 
+        }
+
+        .squad-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .player-card {
+            background: var(--white); 
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--can-blue), var(--can-red), var(--can-blue));
+            background-size: 200% 100%;
+            animation: gradientMove 3s infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .player-card:hover { 
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 30px rgba(0,56,147,0.3);
+        }
+        
+        .player-img { 
+            height: 320px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .player-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            z-index: 1;
+        }
+        .player-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .player-card:hover .player-img img { 
+            transform: scale(1.1);
+        }
+
+        .player-info { 
+            padding: 25px 20px; 
+            text-align: center;
+            position: relative;
+            background: var(--white);
+        }
+        .player-info::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 20px;
+            background: var(--white);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .player-name { 
+            font-size: 1.3rem; 
+            color: var(--can-blue); 
+            margin-bottom: 5px; 
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        .player-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--can-red);
+            transition: width 0.3s ease;
+        }
+        .player-card:hover .player-name::after {
+            width: 50%;
+        }
+        .player-role { 
+            font-size: 0.9rem; 
+            color: var(--can-red); 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(220,20,60,0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .role-badge { 
+            position: absolute; 
+            top: 15px; 
+            right: 15px; 
+            background: linear-gradient(135deg, var(--can-blue), #002b6b);
+            color: var(--white); 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3); 
+            z-index: 10;
+            border: 2px solid var(--gold);
+            animation: pulse 2s infinite;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--can-blue);
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--gray-text);
+            text-transform: uppercase;
+        }
+
+        .extra-badge {
+            position: absolute; 
+            top: 15px; 
+            left: 15px; 
+            background: linear-gradient(135deg, var(--can-red), #b00e2e); 
+            color: var(--white); 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            z-index: 10;
+            box-shadow: 0 3px 10px rgba(220,20,60,0.3);
+            letter-spacing: 1px;
+        }
+
+        /* View Profile link */
+        .view-profile {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--can-blue);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .view-profile:hover {
+            color: var(--can-red);
+            transform: translateX(5px);
+        }
+
+        /* --- 7. GALLERY SECTION --- */
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            transition: all 0.3s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        .gallery-overlay h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .gallery-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 10px 25px;
+            border: none;
+            background: var(--light-bg);
+            color: var(--dark-text);
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--can-red);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220,20,60,0.3);
+        }
+
+        /* --- 8. NEXT FIXTURE SECTION --- */
+        .match-section { 
+            padding: 60px 0; 
+            background: linear-gradient(135deg, var(--can-blue), #002b6b); 
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .match-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .match-section .section-title { color: var(--white); border-bottom-color: rgba(255,255,255,0.3); }
+        
+        .match-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            color: #333;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .match-team { 
+            font-size: clamp(1.2rem, 4vw, 1.8rem); 
+            font-family: 'Oswald'; 
+            font-weight: bold; 
+            color: var(--can-blue);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .match-vs { 
+            color: var(--can-red); 
+            font-weight: 900; 
+            padding: 0 30px; 
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-family: 'Oswald';
+        }
+        .pulse-text { 
+            animation: pulse 2s infinite; 
+            font-size: 0.9rem; 
+            color: var(--can-red); 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            display: block; 
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* --- 9. RECENT RESULTS --- */
+        .results-section {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .result-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid var(--can-red);
+        }
+        .result-teams {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .result-score {
+            color: var(--can-blue);
+            font-size: 1.2rem;
+        }
+        .result-status {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        /* --- 10. NEWS SECTION --- */
+        .news-section { padding: 80px 0; background: var(--light-bg); }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .news-card {
+            background: var(--white); 
+            border-radius: 15px; 
+            overflow: hidden;
+            transition: var(--transition); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .news-card:hover { 
+            box-shadow: 0 20px 30px rgba(0,0,0,0.15); 
+            transform: translateY(-10px); 
+        }
+        .news-img { 
+            height: 220px; 
+            overflow: hidden; 
+            position: relative; 
+        }
+        .news-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.8s ease; 
+        }
+        .news-card:hover .news-img img { 
+            transform: scale(1.15) rotate(2deg); 
+        }
+        .news-date-badge { 
+            position: absolute; 
+            top: 15px; 
+            left: 15px; 
+            background: linear-gradient(135deg, var(--can-red), #b00e2e); 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 30px; 
+            font-size: 0.8rem; 
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(220,20,60,0.3);
+            z-index: 2;
+        }
+        .news-content { padding: 25px; }
+        .news-title { 
+            font-size: 1.3rem; 
+            line-height: 1.3; 
+            margin-bottom: 15px; 
+            color: var(--can-blue);
+            transition: color 0.3s ease;
+        }
+        .news-card:hover .news-title {
+            color: var(--can-red);
+        }
+        .read-more { 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+            color: var(--can-red); 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+        .read-more:hover {
+            gap: 10px;
+        }
+
+        /* --- 11. SPONSORS CAROUSEL --- */
+        .sponsors-section {
+            padding: 40px 0;
+            background: var(--white);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sponsors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        .sponsor-item {
+            opacity: 0.7;
+            transition: var(--transition);
+            filter: grayscale(100%);
+        }
+        .sponsor-item:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        .sponsor-item img {
+            max-height: 60px;
+            width: auto;
+        }
+
+        /* --- 12. FOOTER with newsletter --- */
+        footer { 
+            background: #111; 
+            color: #999; 
+            padding: 70px 0 20px; 
+            font-size: 0.95rem;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--can-blue), var(--can-red), var(--can-blue));
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 50px; }
+        .footer h3 { 
+            color: var(--white); 
+            margin-bottom: 25px; 
+            font-size: 1.3rem; 
+            border-left: 3px solid var(--can-red); 
+            padding-left: 10px;
+            position: relative;
+        }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links li a { 
+            display: inline-block;
+            transition: transform 0.3s ease;
+            min-height: 44px;
+        }
+        .footer-links li a:hover { 
+            color: var(--can-red); 
+            transform: translateX(5px); 
+        }
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            min-width: 200px;
+        }
+        .newsletter-form button {
+            padding: 12px 20px;
+            background: var(--can-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        .newsletter-form button:hover {
+            background: #b00e2e;
+        }
+        .copyright { 
+            text-align: center; 
+            border-top: 1px solid #222; 
+            padding-top: 25px; 
+            font-size: 0.85rem;
+        }
+        .copyright a { 
+            color: var(--can-red);
+            transition: color 0.3s ease;
+        }
+        .copyright a:hover { 
+            color: var(--white);
+            text-decoration: underline; 
+        }
+
+        /* Back to Top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--can-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: #b00e2e;
+            transform: translateY(-5px);
+        }
+
+        /* --- RESPONSIVE FIXES (enhanced for very small devices) --- */
+        @media (max-width: 1024px) {
+            .hero { height: 500px; }
+        }
+
+        @media (max-width: 900px) {
+            .logo-img { height: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            
+            .nav-inner { height: 70px; }
+            
+            .logo { 
+                font-size: 1.2rem; 
+                gap: 5px;
+            }
+            .logo-img { 
+                height: 35px; 
+            }
+            
+            .hero { 
+                height: 450px; 
+                text-align: center; 
+            }
+            .hero-text { 
+                border-left: none; 
+                border-bottom: 5px solid var(--can-red); 
+                padding-bottom: 20px;
+                margin: 0 auto;
+                padding-left: 0;
+            }
+            .hero h1 { 
+                color: var(--white);
+            }
+            
+            .match-card { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+                padding: 25px;
+            }
+            .match-team { font-size: 1.4rem; }
+            .match-vs { 
+                padding: 5px 0; 
+                font-size: 1.5rem;
+            }
+            
+            .squad-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+                gap: 20px;
+            } 
+            
+            .player-img { height: 260px; }
+            
+            .player-name { font-size: 1.1rem; }
+            .player-role { font-size: 0.8rem; }
+            
+            .gallery-filter {
+                gap: 8px;
+            }
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .footer-grid {
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer h3 {
+                border-left: none;
+                border-bottom: 3px solid var(--can-red);
+                padding-bottom: 10px;
+                display: inline-block;
+            }
+            
+            .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+        }
+
+        @media (max-width: 480px) {
+            .nav-inner { height: 60px; }
+            
+            .logo { 
+                font-size: 1rem; 
+            }
+            .logo-img { 
+                height: 30px; 
+            }
+            
+            .hero { height: 400px; }
+            .hero h1 { font-size: clamp(1.6rem, 7vw, 2rem); }
+            .hero p { font-size: 0.9rem; }
+            
+            .match-team { font-size: 1.2rem; }
+            .match-vs { font-size: 1.3rem; }
+            
+            .player-name { font-size: 1rem; }
+            .player-role { font-size: 0.75rem; }
+            .player-img { height: 240px; }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            .filter-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Extra small devices (≤360px) */
+        @media (max-width: 360px) {
+            .squad-grid {
+                grid-template-columns: 1fr; /* single column for very narrow */
+            }
+            .player-card {
+                max-width: 100%;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-info">
+                <span><i class="fas fa-envelope" aria-hidden="true"></i> contact@dca-cricket.com</span>
+                <span><i class="fas fa-phone" aria-hidden="true"></i> +977 9810430546</span>
+            </div>
+            <div class="top-socials">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">
+                <img src="logo.jpg" alt="DCA Logo" class="logo-img" width="45" height="45" onerror="this.src='https://via.placeholder.com/45x45/003893/ffffff?text=DCA'">
+                <div class="logo-text">
+                    <span>Dangi</span>
+                    <span>Cricket</span>
+                    <span>Association</span>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#team-photo">Team</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#fixture">Next Match</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="close-menu" id="close-menu" aria-label="Close menu" role="button" tabindex="0"><i class="fas fa-times"></i></li>
+            </ul>
+        </div>
+        <div class="menu-backdrop" id="menu-backdrop"></div>
+    </nav>
+
+    <!-- HERO WITH VIDEO -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="start.jpg">
+            <source src="Video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-text fade-in-up">
+                <h1>REPRESENTING<br>THE PRIDE OF DANGI</h1>
+                <p>Developing talent, fostering sportsmanship, and aiming for glory.</p>
+                <a href="https://wa.me/9779810430546" target="_blank" class="btn" aria-label="Join club on WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> Join The Club
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW TEAM PHOTO SECTION (separate from squad) -->
+    <section class="team-photo-section" id="team-photo">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Our Squad</h2>
+            <div class="fade-in-up">
+                <img src="squad.jpg" alt="DCA Full Squad" width="900" height="500" loading="lazy" onerror="this.src='https://via.placeholder.com/900x500/003893/ffffff?text=DCA+Squad'">
+            </div>
+        </div>
+    </section>
+
+    <!-- SQUAD SECTION (player cards only) -->
+    <section class="squad-section" id="squad">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">DCA Squad (17 Members)</h2>
+                <a href="#" class="view-all-squad" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Management -->
+            <div class="management-title fade-in-up"><span>⚡ TEAM MANAGEMENT ⚡</span></div>
+            <div class="squad-grid">
+                <!-- Coach -->
+                <div class="player-card fade-in-up">
+                    <div class="role-badge"><i class="fas fa-clipboard"></i></div>
+                    <div class="player-img">
+                        <img src="Dil.jpg" alt="Dil Prasad Magar, Head Coach" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Dil Prasad Magar</h3>
+                        <div class="player-role">Head Coach</div>
+                        <a href="#" class="view-profile" data-img="Dil.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">10+</div>
+                            <div class="stat-label">Years Exp</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Trophies</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Manager -->
+                <div class="player-card fade-in-up" onclick="window.open('https://ramanbhandari.com.np/', '_blank')">
+                    <div class="role-badge"><i class="fas fa-user-tie"></i></div>
+                    <div class="player-img">
+                        <img src="raman.jpg" alt="Raman Bhandari, Team Manager" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Raman Bhandari</h3>
+                        <div class="player-role">Team Manager</div>
+                        <a href="#" class="view-profile" data-img="raman.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">5+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Dedication</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Players -->
+            <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
+            <div class="squad-grid" id="initial-squad">
+                <!-- Player 1: Captain -->
+                <div class="player-card fade-in-up">
+                    <div class="role-badge">C</div>
+                    <div class="player-img">
+                        <img src="Avishek.jpg" alt="Avishek Thapa, Captain" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Avishek+Thapa'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Avishek Thapa</h3>
+                        <div class="player-role">Captain / All-Rounder</div>
+                        <a href="#" class="view-profile" data-img="Avishek.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">450+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 2: Vice Captain -->
+                <div class="player-card fade-in-up">
+                    <div class="role-badge">VC</div>
+                    <div class="player-img">
+                        <img src="Sanjay.jpg" alt="Sanjay Yamphu Rai, Vice Captain" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sanjay+Yamphu+Rai'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sanjay Yamphu Rai</h3>
+                        <div class="player-role">Vice Captain / Batsman</div>
+                        <a href="#" class="view-profile" data-img="Sanjay.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">520+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">85+</div>
+                            <div class="stat-label">Strike Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 3: Diwana Linka Yakha -->
+                <div class="player-card fade-in-up">
+                    <div class="role-badge">WK</div>
+                    <div class="player-img">
+                        <img src="Diwana.jpg" alt="Diwana Linka Yakha, Wicket Keeper" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Diwana+Linka+Yakha'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Diwana Linka Yakha</h3>
+                        <div class="player-role">Wicket Keeper/All Rounder</div>
+                        <a href="#" class="view-profile" data-img="Diwana.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">25</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Stumpings</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 4: Dipson Karki -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Dipson.jpg" alt="Dipson Karki, Fast Bowler" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dipson+Karki'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Dipson Karki</h3>
+                        <div class="player-role">Fast Bowler</div>
+                        <a href="#" class="view-profile" data-img="Dipson.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">135+</div>
+                            <div class="stat-label">Speed (km/h)</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">30</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 5: Manish Khadka -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Manish.jpg" alt="Manish Khadka, Spin Bowler" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Manish+Khadka'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Manish Khadka</h3>
+                        <div class="player-role">Spin Bowler/Batsman</div>
+                        <a href="#" class="view-profile" data-img="Manish.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">280+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 6: Narayan Khadka -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Narayan.jpg" alt="Narayan Khadka, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Narayan+Khadka'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Narayan Khadka</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Narayan.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">380+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">Fifties</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 7: Kiran Dahal -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Kiran.jpg" alt="Kiran Dahal, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Kiran+Dahal'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Kiran Dahal</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Kiran.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 8: Sonu Yamphu -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Sonu.jpg" alt="Sonu Yamphu, Bowler" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sonu+Yamphu'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sonu Yamphu</h3>
+                        <div class="player-role">Bowler</div>
+                        <a href="#" class="view-profile" data-img="Sonu.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">22</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4.2</div>
+                            <div class="stat-label">Economy</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 9: Dhanraj Sah -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Dhanraj.jpg" alt="Dhanraj Sah, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dhanraj+Sah'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Dhanraj Sah</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Dhanraj.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">310+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">32</div>
+                            <div class="stat-label">Highest</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 10: Samin Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Samin.jpg" alt="Samin Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Samin+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Samin Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Samin.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Efficiency</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 11: Sekhar Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Sekhar.jpg" alt="Sekhar Magar, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sekhar+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sekhar Magar</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Sekhar.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">290+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">78</div>
+                            <div class="stat-label">Strike Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 12: Suresh Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Suresh.jpg" alt="Suresh Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suresh+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suresh Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Suresh.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 13: Anmol Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Anmol.jpg" alt="Anmol Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Anmol+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Anmol Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Anmol.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">10</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 14: Aabiskar Ghimire -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Aabiskar.jpg" alt="Aabiskar Ghimire, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Aabiskar+Ghimire'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Aabiskar Ghimire</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Aabiskar.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">90%</div>
+                            <div class="stat-label">Efficiency</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 15: Suman Giri -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Suman.jpg" alt="Suman Giri, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suman+Giri'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suman Giri</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Suman.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">9</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; color: var(--gray-text); font-weight: bold; font-size: 1.1rem;">
+                ⚡ Total 17 Members | 2 Management + 15 Players ⚡
+            </p>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Photo Gallery</h2>
+                <a href="#" class="view-all-gallery" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="gallery-filter fade-in-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="matches">Matches</button>
+                <button class="filter-btn" data-filter="training">Training</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="team">Team</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Match category -->
+                <div class="gallery-item" data-category="matches">
+                    <a href="old.jpg" data-lightbox="gallery" data-title="Historic Match - DCA vs Rivals">
+                        <img src="old.jpg" alt="Historic match" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Match'">
+                        <div class="gallery-overlay">
+                            <h4>Historic Match</h4>
+                            <p>DCA vs Rivals (2005)</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Training category -->
+                <div class="gallery-item" data-category="training">
+                    <a href="training.jpg" data-lightbox="gallery" data-title="Training Session - Fast Bowling">
+                        <img src="training.jpg" alt="Training session" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Training'">
+                        <div class="gallery-overlay">
+                            <h4>Training Session</h4>
+                            <p>Fast Bowling Practice</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Team category -->
+                <div class="gallery-item" data-category="team">
+                    <a href="team.jpg" data-lightbox="gallery" data-title="Team Photo - DCA Squad 2025">
+                        <img src="team.jpg" alt="Team photo" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Team'">
+                        <div class="gallery-overlay">
+                            <h4>Team Photo</h4>
+                            <p>DCA Squad 2025</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Events category -->
+                <div class="gallery-item" data-category="events">
+                    <a href="start.jpg" data-lightbox="gallery" data-title="Season Opening Ceremony">
+                        <img src="start.jpg" alt="Opening ceremony" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Start'">
+                        <div class="gallery-overlay">
+                            <h4>Opening Ceremony</h4>
+                            <p>New Season Kickoff</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Additional match -->
+                <div class="gallery-item" data-category="matches">
+                    <a href="old.jpg" data-lightbox="gallery" data-title="Victory Celebration">
+                        <img src="old.jpg" alt="Celebration" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Celebration'">
+                        <div class="gallery-overlay">
+                            <h4>Victory Celebration</h4>
+                            <p>Winners of Friendly Match</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Another training -->
+                <div class="gallery-item" data-category="training">
+                    <a href="training.jpg" data-lightbox="gallery" data-title="Net Practice Session">
+                        <img src="training.jpg" alt="Net practice" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Net+Practice'">
+                        <div class="gallery-overlay">
+                            <h4>Net Practice</h4>
+                            <p>Morning Training Session</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEXT FIXTURE -->
+    <section class="match-section" id="fixture">
+        <div class="container">
+            <h2 class="section-title fade-in-up" style="margin-bottom: 40px;">Next Match</h2>
+            
+            <div class="match-card fade-in-up">
+                <div style="flex: 1;">
+                    <span class="pulse-text"><i class="fas fa-circle" style="font-size:0.6rem; margin-right:5px;"></i> UPCOMING FIXTURE</span>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
+                        <div class="match-team">Dangi Cricket Association</div>
+                        <div class="match-vs">VS</div>
+                        <div class="match-team" style="color: #666;">Biratnagar Club</div>
+                    </div>
+                    <div style="font-size: 0.95rem; margin-top: 15px; color: #555; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                        <span><i class="far fa-calendar-alt" style="color: var(--can-red); margin-right:5px;"></i> Saturday, 15 March 2025</span>
+                        <span><i class="far fa-clock" style="color: var(--can-red); margin-right:5px;"></i> 10:00 AM</span>
+                        <span><i class="fas fa-map-marker-alt" style="color: var(--can-red); margin-right:5px;"></i> Dangi Ground</span>
+                    </div>
+                </div>
+                <div>
+                     <a href="https://wa.me/9779810430546?text=Hello,%20I%20want%20to%20know%20about%20the%20upcoming%20match" target="_blank" class="btn" style="background: var(--can-blue);">
+                        <i class="fab fa-whatsapp" style="margin-right:5px;"></i> Match Details
+                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECENT RESULTS -->
+    <section class="results-section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Recent Results</h2>
+                <a href="#" style="color: var(--can-red); font-weight: bold;">Full Schedule <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-teams">DCA vs Kerabari XI</div>
+                    <div class="result-score">DCA won by 45 runs</div>
+                    <div class="result-status">Friendly | 25 Feb 2025</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-teams">DCA vs Biratnagar</div>
+                    <div class="result-score">Lost by 3 wickets</div>
+                    <div class="result-status">League | 18 Feb 2025</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-teams">DCA vs Itahari</div>
+                    <div class="result-score">Won by 8 runs</div>
+                    <div class="result-status">Tournament | 10 Feb 2025</div>
+                </div>
+            </div>
+            <!-- Small image for context -->
+            <div style="text-align: center; margin-top: 30px;">
+                <img src="training.jpg" alt="Training session" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" width="600" height="300" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title">Latest Updates</h2>
+                <a href="#" class="view-all-news" style="color: var(--can-red); font-weight: bold;">View Archive <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="news-grid">
+                <div class="news-card fade-in-up">
+                    <div class="news-img">
+                        <span class="news-date-badge">MAR 10</span>
+                        <img src="team.jpg" alt="Team announcement" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Team'">
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">DCA Announces Squad for Regional Tournament</h3>
+                        <p style="color: var(--gray-text); margin-bottom: 15px;">15 players selected for the upcoming championship...</p>
+                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <div class="news-card fade-in-up">
+                    <div class="news-img">
+                        <span class="news-date-badge">MAR 5</span>
+                        <img src="training.jpg" alt="Training camp" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Training'">
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Training Camp Begins at Dangi Ground</h3>
+                        <p style="color: var(--gray-text); margin-bottom: 15px;">Intensive practice sessions start from March 12th...</p>
+                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <div class="news-card fade-in-up">
+                    <div class="news-img">
+                        <span class="news-date-badge">FEB 28</span>
+                        <img src="old.jpg" alt="Victory" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Victory'">
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Victory against Kerabari X</h3>
+                        <p style="color: var(--gray-text); margin-bottom: 15px;">DCA wins friendly match by 45 runs...</p>
+                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS CAROUSEL -->
+    <section class="sponsors-section">
+        <div class="container">
+            <div class="sponsors-grid">
+                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/003893/ffffff?text=Sponsor+1" alt="Sponsor 1" width="150" height="60" loading="lazy"></div>
+                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/DC143C/ffffff?text=Sponsor+2" alt="Sponsor 2" width="150" height="60" loading="lazy"></div>
+                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/666666/ffffff?text=Sponsor+3" alt="Sponsor 3" width="150" height="60" loading="lazy"></div>
+                <div class="sponsor-item"><img src="https://via.placeholder.com/150x60/003893/ffffff?text=Sponsor+4" alt="Sponsor 4" width="150" height="60" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER with newsletter -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer">
+                    <h3>DCA</h3>
+                    <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. Committed to excellence, integrity, and community spirit since 2020.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="#" aria-label="Facebook" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube" style="color: var(--white); font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right" style="margin-right:8px;"></i> About Us</a></li>
+                        <li><a href="#team-photo"><i class="fas fa-angle-right" style="margin-right:8px;"></i> The Squad</a></li>
+                        <li><a href="#gallery"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Gallery</a></li>
+                        <li><a href="#fixture"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Fixtures</a></li>
+                        <li><a href="#news"><i class="fas fa-angle-right" style="margin-right:8px;"></i> News</a></li>
+                        <li><a href="#contact"><i class="fas fa-angle-right" style="margin-right:8px;"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer">
+                    <h3>Contact Us</h3>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt" style="color: var(--can-red); margin-right:10px;"></i> Kerabari 6 & 7, Dangi, Nepal</p>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-phone" style="color: var(--can-red); margin-right:10px;"></i> +977 9810430546</p>
+                    <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="color: var(--can-red); margin-right:10px;"></i> contact@dca-cricket.com</p>
+                </div>
+                <div class="footer">
+                    <h3>Newsletter</h3>
+                    <p>Get the latest updates straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required aria-label="Email for newsletter">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Dangi Cricket Association. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: var(--can-red);"></i> by <a href="https://ramanbhandari.com.np/" target="_blank">Raman Bhandari</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    
+    <!-- JAVASCRIPT (all moved to one block) -->
+    <script>
+        (function() {
+            // Menu toggle with backdrop
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            const closeMenu = document.getElementById('close-menu');
+            const backdrop = document.getElementById('menu-backdrop');
+
+            function openMenu() {
+                navLinks.classList.add('active');
+                backdrop.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenuFn() {
+                navLinks.classList.remove('active');
+                backdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', openMenu);
+            closeMenu.addEventListener('click', closeMenuFn);
+            backdrop.addEventListener('click', closeMenuFn);
+
+            // Close menu on resize above mobile
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeMenuFn();
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        closeMenuFn();
+                    }
+                });
+            });
+
+            // Gallery filter
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            function filterGallery(category) {
+                galleryItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.filter === category) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterGallery(this.dataset.filter);
+                });
+            });
+
+            // Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+            // Back to top
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            // Lightbox options
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'albumLabel': 'Image %1 of %2',
+                    'fadeDuration': 300,
+                    'imageFadeDuration': 300
+                });
+            }
+
+            // Image fallbacks
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    if(this.alt && this.alt.includes('Logo')) {
+                        this.src = 'https://via.placeholder.com/45x45/003893/ffffff?text=DCA';
+                    } else if (this.alt && this.alt.includes('Dil')) {
+                        this.src = 'https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar';
+                    } else if (this.alt && this.alt.includes('Raman')) {
+                        this.src = 'https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari';
+                    } // add more as needed
+                });
+            });
+
+            // View Profile
+            document.querySelectorAll('.view-profile').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const imgSrc = this.getAttribute('data-img');
+                    if (!imgSrc) return;
+                    const tempLink = document.createElement('a');
+                    tempLink.href = imgSrc;
+                    tempLink.setAttribute('data-lightbox', 'profile');
+                    tempLink.setAttribute('data-title', 'Player Profile');
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                });
+            });
+
+            // View All Squad
+            const viewAllSquad = document.querySelector('.view-all-squad');
+            if (viewAllSquad) {
+                viewAllSquad.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const playerImgs = document.querySelectorAll('.player-card .player-img img');
+                    if (playerImgs.length === 0) return;
+                    const container = document.createElement('div');
+                    container.style.display = 'none';
+                    playerImgs.forEach((img, index) => {
+                        const link = document.createElement('a');
+                        link.href = img.src;
+                        link.setAttribute('data-lightbox', 'squad-all');
+                        link.setAttribute('data-title', img.alt || 'Player');
+                        container.appendChild(link);
+                    });
+                    document.body.appendChild(container);
+                    const firstLink = container.querySelector('a');
+                    if (firstLink) firstLink.click();
+                    document.body.removeChild(container);
+                });
+            }
+
+            // View All Gallery
+            const viewAllGallery = document.querySelector('.view-all-gallery');
+            if (viewAllGallery) {
+                viewAllGallery.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterGallery('all');
+                    const firstGalleryItem = document.querySelector('.gallery-item a[data-lightbox="gallery"]');
+                    if (firstGalleryItem) {
+                        firstGalleryItem.click();
+                    }
+                });
+            }
+
+            // View All News
+            const viewAllNews = document.querySelector('.view-all-news');
+            if (viewAllNews) {
+                viewAllNews.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const newsSection = document.getElementById('news');
+                    if (newsSection) {
+                        newsSection.scrollIntoView({ behavior: 'smooth' });
+                        newsSection.style.transition = 'background-color 0.5s';
+                        newsSection.style.backgroundColor = 'rgba(220,20,60,0.1)';
+                        setTimeout(() => {
+                            newsSection.style.backgroundColor = '';
+                        }, 1000);
+                    }
+                });
+            }
+
+        })();
+    </script>
+</body>
+</html>
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="favicon.jpg">
     
