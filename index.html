@@ -74,7 +74,7 @@
             display: inline-block; padding: 12px 30px; 
             background: var(--can-red); color: var(--white); 
             font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase;
-            border: none; cursor: pointer; font-size: 0.9rem; border-radius: 2px;
+            border: none; cursor: pointer; font-size: 0.9rem; border-radius: 4px;
             transition: var(--transition);
             text-align: center;
             position: relative;
@@ -84,25 +84,22 @@
         .btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s ease;
             z-index: -1;
         }
-        .btn:hover::before {
-            left: 100%;
-        }
+        .btn:hover::before { left: 100%; }
         .btn:hover { background: #b00e2e; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4); color: white; }
 
         .section-header {
             display: flex; justify-content: space-between; align-items: flex-end;
             margin-bottom: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;
         }
+        
+        /* FLUID TYPOGRAPHY FOR SECTION TITLES */
         .section-title { 
-            font-size: 2rem; 
+            font-size: clamp(1.8rem, 4vw, 2.5rem); 
             border-bottom: 4px solid var(--can-red); 
             padding-bottom: 6px; 
             margin-bottom: -12px;
@@ -112,10 +109,7 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 50%;
-            height: 4px;
+            bottom: -4px; left: 0; width: 50%; height: 4px;
             background: var(--can-red);
             animation: slideLine 3s infinite;
         }
@@ -125,603 +119,264 @@
             100% { left: 0; width: 50%; }
         }
 
-        /* --- 3. HEADER & NAV --- */
+        /* --- 3. HEADER & NAV (WITH GLASSMORPHISM) --- */
         .top-bar { background-color: var(--can-blue); color: var(--white); padding: 10px 0; font-size: 0.85rem; }
         .top-bar .container { display: flex; justify-content: space-between; align-items: center; }
         .top-info span { margin-right: 20px; }
         .top-socials a { margin-left: 15px; color: var(--white); }
         .top-socials a:hover { color: var(--can-red); transform: translateY(-2px); }
         
-        nav { background: var(--white); box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+        /* PREMIUM GLASSMORPHISM NAV */
+        nav { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            transition: all 0.3s ease;
+        }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
         .logo { 
-            font-size: 1.8rem; 
-            font-family: 'Oswald', sans-serif; 
-            font-weight: bold; 
-            color: var(--can-blue); 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            white-space: nowrap;
+            font-size: 1.8rem; font-family: 'Oswald', sans-serif; font-weight: bold; 
+            color: var(--can-blue); display: flex; align-items: center; gap: 8px; white-space: nowrap;
         }
-        .logo-img {
-            height: 45px;
-            width: auto;
-            border-radius: 4px;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-        }
-        .logo:hover .logo-img {
-            transform: rotate(360deg);
-        }
+        .logo-img { height: 45px; width: auto; border-radius: 4px; transition: transform 0.3s ease; flex-shrink: 0; }
+        .logo:hover .logo-img { transform: rotate(360deg); }
         .logo span { color: var(--can-red); }
-        .logo-text {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
+        .logo-text { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
         
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { 
-            font-weight: 600; 
-            color: var(--dark-text); 
-            text-transform: uppercase; 
-            font-size: 0.95rem; 
-            position: relative;
-            padding: 5px 0;
-            white-space: nowrap;
+            font-weight: 600; color: var(--dark-text); text-transform: uppercase; 
+            font-size: 0.95rem; position: relative; padding: 5px 0; white-space: nowrap;
         }
         .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--can-red);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--can-red); transition: width 0.3s ease;
         }
-        .nav-links a:hover::before {
-            width: 100%;
-        }
+        .nav-links a:hover::before { width: 100%; }
         .nav-links a:hover { color: var(--can-red); }
         .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--can-blue); }
 
+        /* MOBILE MENU OVERLAY */
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 998; opacity: 0; visibility: hidden; transition: 0.4s ease;
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
         /* --- 4. HERO WITH VIDEO BACKGROUND --- */
         .hero {
-            height: 600px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            color: var(--white);
-            overflow: hidden;
+            height: 600px; position: relative; display: flex; align-items: center;
+            color: var(--white); overflow: hidden;
         }
-        
         .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1;
         }
-        
         .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,56,147,0.7), rgba(220,20,60,0.7));
-            z-index: -1;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0,56,147,0.7), rgba(220,20,60,0.7)); z-index: -1;
         }
-        
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            animation: shimmer 6s infinite;
-            z-index: -1;
+            animation: shimmer 6s infinite; z-index: -1;
         }
-        
         .hero-text { 
-            max-width: 700px; 
-            border-left: 6px solid var(--can-red); 
-            padding-left: 30px; 
-            animation: slideRight 1s ease-out;
-            position: relative;
-            z-index: 2;
+            max-width: 700px; border-left: 6px solid var(--can-red); padding-left: 30px; 
+            animation: slideRight 1s ease-out; position: relative; z-index: 2;
         }
         @keyframes slideRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        
+        /* FLUID TYPOGRAPHY FOR HERO */
         .hero h1 { 
-            font-size: 4rem; 
-            line-height: 1.1; 
-            margin-bottom: 20px; 
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            color: var(--white);
+            font-size: clamp(2.5rem, 6vw, 5rem); 
+            line-height: 1.1; margin-bottom: 20px; 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5); color: var(--white);
         }
-        .hero p { color: var(--white); }
+        .hero p { color: var(--white); font-size: 1.1rem; margin-bottom: 25px; }
 
         /* --- 5. SQUAD SECTION --- */
         .squad-section { padding: 80px 0; background: var(--light-bg); position: relative; }
         .squad-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M20,50 Q35,30 50,50 T80,50" stroke="%23003893" fill="none" stroke-width="2"/><circle cx="30" cy="40" r="3" fill="%23DC143C"/><circle cx="70" cy="60" r="3" fill="%23DC143C"/></svg>');
-            background-repeat: repeat;
-            pointer-events: none;
+            background-repeat: repeat; pointer-events: none;
         }
         .management-title { text-align: center; margin: 40px 0 30px; position: relative; }
         .management-title span { 
-            background: var(--light-bg); 
-            padding: 0 20px; 
-            position: relative; 
-            z-index: 2; 
-            color: var(--can-red);
-            font-weight: bold; 
-            letter-spacing: 1px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
+            background: var(--light-bg); padding: 0 20px; position: relative; z-index: 2; 
+            color: var(--can-red); font-weight: bold; letter-spacing: 1px; font-size: 1.2rem; text-transform: uppercase;
         }
         .management-title::before { 
-            content:''; 
-            position: absolute; 
-            width: 100%; 
-            height: 2px; 
+            content:''; position: absolute; width: 100%; height: 2px; 
             background: linear-gradient(90deg, transparent, var(--can-red), transparent);
-            top: 50%; 
-            left: 0; 
-            z-index: 1; 
+            top: 50%; left: 0; z-index: 1; 
         }
 
+        /* SMART CSS GRID */
         .squad-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 35px; 
+            padding: 20px 0;
         }
         
         .player-card {
-            background: var(--white); 
-            border-radius: 15px;
-            overflow: hidden;
+            background: var(--white); border-radius: 15px; overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            cursor: pointer;
+            position: relative; cursor: pointer;
         }
         .player-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
             background: linear-gradient(90deg, var(--can-blue), var(--can-red), var(--can-blue));
-            background-size: 200% 100%;
-            animation: gradientMove 3s infinite;
-        }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .player-card:hover { 
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 30px rgba(0,56,147,0.3);
+            background-size: 200% 100%; animation: gradientMove 3s infinite;
         }
         
-        /* --- ENHANCED IMAGE DISPLAY --- */
+        /* ADVANCED 3D HOVER EFFECT */
+        .player-card:hover { 
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 40px -10px rgba(0, 56, 147, 0.3), 
+                        0 15px 20px -15px rgba(220, 20, 60, 0.2);
+        }
+        
         .player-img { 
-            height: 320px; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow: hidden; 
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 320px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center;
         }
         .player-img::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30%;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-            z-index: 1;
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); z-index: 1;
         }
-        .player-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
-            transition: transform 0.6s ease;
+        /* Glassmorphism Dark Overlay on hover */
+        .player-img::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,56,147,0.5));
+            opacity: 0; transition: var(--transition); z-index: 2; pointer-events: none;
         }
-        .player-card:hover .player-img img { 
-            transform: scale(1.1);
-        }
+        .player-card:hover .player-img::before { opacity: 1; }
+        
+        .player-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .player-card:hover .player-img img { transform: scale(1.12); }
 
-        .player-info { 
-            padding: 25px 20px; 
-            text-align: center;
-            position: relative;
-            background: var(--white);
-        }
+        .player-info { padding: 25px 20px; text-align: center; position: relative; background: var(--white); }
         .player-info::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 20px;
-            background: var(--white);
+            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 50px; height: 20px; background: var(--white);
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         }
         .player-name { 
-            font-size: 1.3rem; 
-            color: var(--can-blue); 
-            margin-bottom: 5px; 
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
+            font-size: 1.3rem; color: var(--can-blue); margin-bottom: 5px; font-weight: 700;
+            position: relative; display: inline-block;
         }
         .player-name::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--can-red);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 2px; background: var(--can-red); transition: width 0.3s ease;
         }
-        .player-card:hover .player-name::after {
-            width: 50%;
-        }
+        .player-card:hover .player-name::after { width: 50%; }
         .player-role { 
-            font-size: 0.9rem; 
-            color: var(--can-red); 
-            font-weight: bold; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(220,20,60,0.1);
-            padding: 5px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 5px;
+            font-size: 0.85rem; color: var(--can-red); font-weight: bold; text-transform: uppercase;
+            letter-spacing: 1px; background: rgba(220,20,60,0.08); padding: 5px 12px;
+            border-radius: 20px; display: inline-block; margin-top: 5px;
         }
         .role-badge { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            background: linear-gradient(135deg, var(--can-blue), #002b6b);
-            color: var(--white); 
-            width: 45px; 
-            height: 45px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 1rem; 
-            font-weight: bold; 
-            box-shadow: 0 5px 10px rgba(0,0,0,0.3); 
-            z-index: 10;
-            border: 2px solid var(--gold);
+            position: absolute; top: 15px; right: 15px; background: linear-gradient(135deg, var(--can-blue), #002b6b);
+            color: var(--white); width: 45px; height: 45px; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center; font-size: 1rem; font-weight: bold; 
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3); z-index: 10; border: 2px solid var(--gold);
             animation: pulse 2s infinite;
         }
 
-        .player-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed var(--border-color);
-        }
-        .stat {
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--can-blue);
-        }
-        .stat-label {
-            font-size: 0.7rem;
-            color: var(--gray-text);
-            text-transform: uppercase;
-        }
-
-        .extra-badge {
-            position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            background: linear-gradient(135deg, var(--can-red), #b00e2e); 
-            color: var(--white); 
-            padding: 5px 15px; 
-            border-radius: 20px; 
-            font-size: 0.8rem; 
-            font-weight: bold; 
-            z-index: 10;
-            box-shadow: 0 3px 10px rgba(220,20,60,0.3);
-            letter-spacing: 1px;
-        }
+        .player-stats { display: flex; justify-content: space-around; margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--border-color); }
+        .stat { text-align: center; }
+        .stat-value { font-size: 1.1rem; font-weight: bold; color: var(--can-blue); }
+        .stat-label { font-size: 0.7rem; color: var(--gray-text); text-transform: uppercase; }
 
         /* --- 6. GALLERY SECTION --- */
-        .gallery-section {
-            padding: 80px 0;
-            background: var(--white);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
+        .gallery-section { padding: 80px 0; background: var(--white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
         .gallery-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            cursor: pointer;
-            aspect-ratio: 4/3;
-            transition: all 0.3s ease;
+            position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            cursor: pointer; aspect-ratio: 4/3; transition: all 0.3s ease;
         }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
         .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: var(--white);
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: var(--white);
+            transform: translateY(100%); transition: transform 0.4s ease;
         }
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-        .gallery-overlay h4 {
-            color: var(--white);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        .gallery-overlay p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-        .gallery-filter {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+        .gallery-overlay h4 { color: var(--white); font-size: 1.1rem; margin-bottom: 5px; }
+        .gallery-overlay p { font-size: 0.85rem; opacity: 0.9; }
+        .gallery-filter { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
         .filter-btn {
-            padding: 10px 25px;
-            border: none;
-            background: var(--light-bg);
-            color: var(--dark-text);
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 10px 25px; border: none; background: var(--light-bg); color: var(--dark-text);
+            font-weight: 600; border-radius: 30px; cursor: pointer; transition: var(--transition);
+            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
         }
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: var(--can-red);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(220,20,60,0.3);
-        }
+        .filter-btn.active, .filter-btn:hover { background: var(--can-red); color: var(--white); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(220,20,60,0.3); }
 
         /* --- 7. NEXT FIXTURE SECTION --- */
         .match-section { 
-            padding: 60px 0; 
-            background: linear-gradient(135deg, var(--can-blue), #002b6b); 
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
+            padding: 80px 0; background: linear-gradient(135deg, var(--can-blue), #002b6b); 
+            color: var(--white); position: relative; overflow: hidden;
         }
         .match-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .match-section .section-title { color: var(--white); border-bottom-color: rgba(255,255,255,0.3); }
         
         .match-card {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            color: #333;
-            padding: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            color: #333; padding: 40px; display: flex; justify-content: space-between; align-items: center;
+            border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); flex-wrap: wrap;
+            position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.2);
         }
-        .match-team { 
-            font-size: 1.8rem; 
-            font-family: 'Oswald'; 
-            font-weight: bold; 
-            color: var(--can-blue);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .match-vs { 
-            color: var(--can-red); 
-            font-weight: 900; 
-            padding: 0 30px; 
-            font-size: 2rem;
-            font-family: 'Oswald';
-        }
-        .pulse-text { 
-            animation: pulse 2s infinite; 
-            font-size: 0.9rem; 
-            color: var(--can-red); 
-            font-weight: bold; 
-            letter-spacing: 2px; 
-            display: block; 
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
+        .match-team { font-size: clamp(1.4rem, 3vw, 1.8rem); font-family: 'Oswald'; font-weight: bold; color: var(--can-blue); text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .match-vs { color: var(--can-red); font-weight: 900; padding: 0 30px; font-size: 2rem; font-family: 'Oswald'; }
+        .pulse-text { animation: pulse 2s infinite; font-size: 0.9rem; color: var(--can-red); font-weight: bold; letter-spacing: 2px; display: block; margin-bottom: 15px; text-transform: uppercase; }
 
         /* --- 8. NEWS SECTION --- */
         .news-section { padding: 80px 0; background: var(--light-bg); }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .news-card {
-            background: var(--white); 
-            border-radius: 15px; 
-            overflow: hidden;
-            transition: var(--transition); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .news-card:hover { 
-            box-shadow: 0 20px 30px rgba(0,0,0,0.15); 
-            transform: translateY(-10px); 
-        }
-        .news-img { 
-            height: 220px; 
-            overflow: hidden; 
-            position: relative; 
-        }
-        .news-img img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.8s ease; 
-        }
-        .news-card:hover .news-img img { 
-            transform: scale(1.15) rotate(2deg); 
-        }
+        .news-card { background: var(--white); border-radius: 15px; overflow: hidden; transition: var(--transition); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .news-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.12); transform: translateY(-10px); }
+        .news-img { height: 220px; overflow: hidden; position: relative; }
+        .news-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .news-card:hover .news-img img { transform: scale(1.15) rotate(2deg); }
         .news-date-badge { 
-            position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            background: linear-gradient(135deg, var(--can-red), #b00e2e); 
-            color: white; 
-            padding: 8px 15px; 
-            border-radius: 30px; 
-            font-size: 0.8rem; 
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(220,20,60,0.3);
-            z-index: 2;
+            position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, var(--can-red), #b00e2e); 
+            color: white; padding: 8px 15px; border-radius: 30px; font-size: 0.8rem; font-weight: bold;
+            box-shadow: 0 5px 15px rgba(220,20,60,0.3); z-index: 2;
         }
         .news-content { padding: 25px; }
-        .news-title { 
-            font-size: 1.3rem; 
-            line-height: 1.3; 
-            margin-bottom: 15px; 
-            color: var(--can-blue);
-            transition: color 0.3s ease;
-        }
-        .news-card:hover .news-title {
-            color: var(--can-red);
-        }
-        .read-more { 
-            font-size: 0.9rem; 
-            font-weight: bold; 
-            color: var(--can-red); 
-            display: flex; 
-            align-items: center; 
-            gap: 5px;
-            transition: gap 0.3s ease;
-        }
-        .read-more:hover {
-            gap: 10px;
-        }
+        .news-title { font-size: 1.3rem; line-height: 1.3; margin-bottom: 15px; color: var(--can-blue); transition: color 0.3s ease; }
+        .news-card:hover .news-title { color: var(--can-red); }
+        .read-more { font-size: 0.9rem; font-weight: bold; color: var(--can-red); display: flex; align-items: center; gap: 5px; transition: gap 0.3s ease; }
+        .read-more:hover { gap: 10px; }
 
         /* --- 9. FOOTER --- */
-        footer { 
-            background: #111; 
-            color: #999; 
-            padding: 70px 0 20px; 
-            font-size: 0.95rem;
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--can-blue), var(--can-red), var(--can-blue));
-        }
+        footer { background: #111; color: #999; padding: 70px 0 20px; font-size: 0.95rem; position: relative; }
+        footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--can-blue), var(--can-red), var(--can-blue)); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 50px; }
-        .footer h3 { 
-            color: var(--white); 
-            margin-bottom: 25px; 
-            font-size: 1.3rem; 
-            border-left: 3px solid var(--can-red); 
-            padding-left: 10px;
-            position: relative;
-        }
+        .footer h3 { color: var(--white); margin-bottom: 25px; font-size: 1.3rem; border-left: 3px solid var(--can-red); padding-left: 10px; position: relative; }
         .footer-links li { margin-bottom: 12px; }
-        .footer-links li a { 
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        .footer-links li a:hover { 
-            color: var(--can-red); 
-            transform: translateX(5px); 
-        }
-        .copyright { 
-            text-align: center; 
-            border-top: 1px solid #222; 
-            padding-top: 25px; 
-            font-size: 0.85rem;
-        }
-        .copyright a { 
-            color: var(--can-red);
-            transition: color 0.3s ease;
-        }
-        .copyright a:hover { 
-            color: var(--white);
-            text-decoration: underline; 
-        }
+        .footer-links li a { display: inline-block; transition: transform 0.3s ease; }
+        .footer-links li a:hover { color: var(--can-red); transform: translateX(5px); }
+        .copyright { text-align: center; border-top: 1px solid #222; padding-top: 25px; font-size: 0.85rem; }
+        .copyright a { color: var(--can-red); transition: color 0.3s ease; }
+        .copyright a:hover { color: var(--white); text-decoration: underline; }
 
         /* --- RESPONSIVE FIXES --- */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 3.5rem; }
-            .logo { font-size: 1.6rem; }
-        }
-
         @media (max-width: 900px) {
             .logo { font-size: 1.4rem; }
             .logo-img { height: 40px; }
@@ -729,156 +384,47 @@
 
         @media (max-width: 768px) {
             .top-bar { display: none; }
-            
             .nav-inner { height: 70px; }
-            
-            .logo { 
-                font-size: 1.2rem; 
-                gap: 5px;
-            }
-            .logo-img { 
-                height: 35px; 
-            }
-            .logo-text {
-                display: inline-flex;
-                align-items: center;
-                gap: 3px;
-            }
+            .logo { font-size: 1.2rem; gap: 5px; }
+            .logo-img { height: 35px; }
+            .logo-text { display: inline-flex; align-items: center; gap: 3px; }
             
             .hamburger { display: block; }
             .nav-links { 
-                position: fixed; 
-                top: 70px; 
-                right: -100%; 
-                width: 80%; 
-                max-width: 300px;
-                height: 100vh;
-                background: var(--white); 
-                flex-direction: column; 
-                padding: 40px 20px; 
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1); 
-                transition: 0.4s ease; 
-                gap: 20px;
-                z-index: 999;
-                overflow-y: auto;
+                position: fixed; top: 70px; right: -100%; width: 80%; max-width: 300px; height: calc(100vh - 70px);
+                background: var(--white); flex-direction: column; padding: 40px 20px; 
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.4s ease; gap: 20px; z-index: 999; overflow-y: auto;
             }
             .nav-links.active { right: 0; }
-            .nav-links a { 
-                font-size: 1rem; 
-                display: block;
-                padding: 10px 0;
-            }
+            .nav-links a { font-size: 1.1rem; display: block; padding: 10px 0; }
             
-            .hero { 
-                height: 500px; 
-                text-align: center; 
-            }
-            .hero-text { 
-                border-left: none; 
-                border-bottom: 5px solid var(--can-red); 
-                padding-bottom: 20px;
-                margin: 0 auto;
-                padding-left: 0;
-            }
-            .hero h1 { 
-                font-size: 2.5rem; 
-                color: var(--white);
-            }
+            .hero { height: 500px; text-align: center; }
+            .hero-text { border-left: none; border-bottom: 5px solid var(--can-red); padding-bottom: 20px; margin: 0 auto; padding-left: 0; }
             
-            .match-card { 
-                flex-direction: column; 
-                gap: 20px; 
-                text-align: center; 
-                padding: 25px;
-            }
-            .match-team { font-size: 1.4rem; }
-            .match-vs { 
-                padding: 5px 0; 
-                font-size: 1.5rem;
-            }
+            .match-card { flex-direction: column; gap: 20px; text-align: center; padding: 25px; }
+            .match-vs { padding: 5px 0; font-size: 1.5rem; }
+            .player-img { height: 280px; }
             
-            .squad-grid { 
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-                gap: 20px;
-            } 
-            
-            .player-img { height: 260px; }
-            
-            .player-name { font-size: 1.1rem; }
-            .player-role { font-size: 0.8rem; }
-            
-            .gallery-filter {
-                gap: 8px;
-            }
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
-            
-            .footer-grid {
-                gap: 30px;
-                text-align: center;
-            }
-            
-            .footer h3 {
-                border-left: none;
-                border-bottom: 3px solid var(--can-red);
-                padding-bottom: 10px;
-                display: inline-block;
-            }
-            
-            .section-title { font-size: 1.8rem; }
+            .gallery-filter { gap: 8px; }
+            .filter-btn { padding: 8px 16px; font-size: 0.8rem; }
+            .footer-grid { gap: 30px; text-align: center; }
+            .footer h3 { border-left: none; border-bottom: 3px solid var(--can-red); padding-bottom: 10px; display: inline-block; }
         }
 
         @media (max-width: 480px) {
             .nav-inner { height: 60px; }
-            
-            .logo { 
-                font-size: 1rem; 
-            }
-            .logo-img { 
-                height: 30px; 
-            }
-            
+            .logo { font-size: 1rem; }
+            .logo-img { height: 30px; }
+            .nav-links { top: 60px; height: calc(100vh - 60px); }
             .hero { height: 450px; }
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 0.9rem; }
-            
-            .section-title { font-size: 1.5rem; }
-            
-            .match-team { font-size: 1.2rem; }
-            .match-vs { font-size: 1.3rem; }
-            
-            .player-name { font-size: 1rem; }
-            .player-role { font-size: 0.75rem; }
-            .player-img { height: 240px; }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-filter {
-                flex-direction: column;
-                align-items: center;
-            }
-            .filter-btn {
-                width: 100%;
-                max-width: 200px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+            .player-img { height: 260px; }
+            .gallery-filter { flex-direction: column; align-items: center; }
+            .filter-btn { width: 100%; max-width: 200px; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 360px) {
-            .logo { 
-                font-size: 0.9rem; 
-            }
-            .logo-img { 
-                height: 25px; 
-            }
-            .hero h1 { font-size: 1.6rem; }
+            .logo { font-size: 0.9rem; }
+            .logo-img { height: 25px; }
         }
     </style>
 </head>
@@ -899,7 +445,7 @@
         </div>
     </div>
 
-    <!-- NAVBAR - FIXED FOR SMALL DEVICES -->
+    <!-- NAVBAR (GLASSMORPHISM) -->
     <nav>
         <div class="container nav-inner">
             <div class="logo">
@@ -922,12 +468,14 @@
         </div>
     </nav>
 
-    <!-- HERO WITH VIDEO BACKGROUND - USING YOUR LOCAL VIDEO.MP4 -->
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <!-- HERO WITH VIDEO BACKGROUND (WITH POSTER FALLBACK) -->
     <section class="hero">
-        <!-- Video Background -->
-        <video class="hero-video" autoplay muted loop playsinline>
+        <!-- Video Background with Fallback Poster -->
+        <video class="hero-video" autoplay muted loop playsinline poster="hero-fallback.jpg">
             <source src="Video.mp4" type="video/mp4">
-            <!-- Fallback for browsers that don't support video -->
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -943,11 +491,11 @@
         </div>
     </section>
 
-    <!-- 1. SQUAD SECTION - 15 Players + 2 Management = 17 Total -->
+    <!-- 1. SQUAD SECTION - 15 Players + 2 Management (LAZY LOAD APPLIED) -->
     <section class="squad-section" id="squad">
         <div class="container">
             <div class="section-header fade-in-up">
-                <h2 class="section-title">DCA Squad (17 Members)</h2>
+                <h2 class="section-title">DCA Squad</h2>
                 <a href="#" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
             </div>
 
@@ -958,42 +506,30 @@
                 <div class="player-card fade-in-up">
                     <div class="role-badge"><i class="fas fa-clipboard"></i></div>
                     <div class="player-img">
-                        <img src="Dil.jpg" alt="Dil Prasad Magar" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar'">
+                        <img src="Dil.jpg" alt="Dil Prasad Magar" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar'">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
                         <div class="player-role">Head Coach</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">10+</div>
-                            <div class="stat-label">Years Exp</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Trophies</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">10+</div><div class="stat-label">Years Exp</div></div>
+                        <div class="stat"><div class="stat-value">5</div><div class="stat-label">Trophies</div></div>
                     </div>
                 </div>
-                <!-- Manager - Clickable -->
+                <!-- Manager -->
                 <div class="player-card fade-in-up" onclick="window.open('https://ramanbhandari.com.np/', '_blank')">
                     <div class="role-badge"><i class="fas fa-user-tie"></i></div>
                     <div class="player-img">
-                        <img src="raman.jpg" alt="Raman Bhandari" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari'">
+                        <img src="raman.jpg" alt="Raman Bhandari" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari'">
                     </div>
                     <div class="player-info">
                         <h3 class="player-name">Raman Bhandari</h3>
                         <div class="player-role">Team Manager</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">5+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Dedication</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">5+</div><div class="stat-label">Projects</div></div>
+                        <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Dedication</div></div>
                     </div>
                 </div>
             </div>
@@ -1001,307 +537,187 @@
             <!-- Players (15) -->
             <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
             <div class="squad-grid" id="initial-squad">
-                <!-- Player 1: Captain - Abhishek Thapa (Avishek.jpg) -->
+                <!-- Player 1 -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">C</div>
-                    <div class="player-img">
-                        <img src="Avishek.jpg" alt="Avishek Thapa" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Avishek+Thapa'">
-                    </div>
+                    <div class="player-img"><img src="Avishek.jpg" alt="Avishek Thapa" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Avishek+Thapa'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Avishek Thapa</h3>
                         <div class="player-role">Captain / All-Rounder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">450+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">25</div>
-                            <div class="stat-label">Wickets</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">450+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">25</div><div class="stat-label">Wickets</div></div>
                     </div>
                 </div>
-                <!-- Player 2: Vice Captain - Sanjay Yamphu Rai (Sanjay.jpg) -->
+                <!-- Player 2 -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">VC</div>
-                    <div class="player-img">
-                        <img src="Sanjay.jpg" alt="Sanjay Yamphu Rai" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sanjay+Yamphu+Rai'">
-                    </div>
+                    <div class="player-img"><img src="Sanjay.jpg" alt="Sanjay Yamphu Rai" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sanjay+Yamphu+Rai'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Sanjay Yamphu Rai</h3>
                         <div class="player-role">Vice Captain / Batsman</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">520+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">85+</div>
-                            <div class="stat-label">Strike Rate</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">520+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">85+</div><div class="stat-label">Strike Rate</div></div>
                     </div>
                 </div>
-                <!-- Player 3: Diwana Linka Yakha (Diwana.jpg) -->
+                <!-- Player 3 -->
                 <div class="player-card fade-in-up">
                     <div class="role-badge">WK</div>
-                    <div class="player-img">
-                        <img src="Diwana.jpg" alt="Diwana Linka Yakha" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Diwana+Linka+Yakha'">
-                    </div>
+                    <div class="player-img"><img src="Diwana.jpg" alt="Diwana Linka Yakha" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Diwana+Linka+Yakha'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Diwana Linka Yakha</h3>
                         <div class="player-role">Wicket Keeper/All Rounder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">25</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Stumpings</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">25</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">5</div><div class="stat-label">Stumpings</div></div>
                     </div>
                 </div>
-                <!-- Player 4: Dipson Karki (Dipson.jpg) -->
+                <!-- Player 4 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Dipson.jpg" alt="Dipson Karki" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dipson+Karki'">
-                    </div>
+                    <div class="player-img"><img src="Dipson.jpg" alt="Dipson Karki" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dipson+Karki'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
                         <div class="player-role">Fast Bowler</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">135+</div>
-                            <div class="stat-label">Speed (km/h)</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">30</div>
-                            <div class="stat-label">Wickets</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">135+</div><div class="stat-label">Speed</div></div>
+                        <div class="stat"><div class="stat-value">30</div><div class="stat-label">Wickets</div></div>
                     </div>
                 </div>
-                <!-- Player 5: Manish Khadka (Manish.jpg) -->
+                <!-- Player 5 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Manish.jpg" alt="Manish Khadka" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Manish+Khadka'">
-                    </div>
+                    <div class="player-img"><img src="Manish.jpg" alt="Manish Khadka" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Manish+Khadka'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Manish Khadka</h3>
                         <div class="player-role">Spin Bowler/Batsman</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">280+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">18</div>
-                            <div class="stat-label">Wickets</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">280+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">18</div><div class="stat-label">Wickets</div></div>
                     </div>
                 </div>
-                <!-- Player 6: Narayan Khadka (Narayan.jpg) -->
+                <!-- Player 6 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Narayan.jpg" alt="Narayan Khadka" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Narayan+Khadka'">
-                    </div>
+                    <div class="player-img"><img src="Narayan.jpg" alt="Narayan Khadka" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Narayan+Khadka'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Narayan Khadka</h3>
                         <div class="player-role">Batsman</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">380+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Fifties</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">380+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">4</div><div class="stat-label">Fifties</div></div>
                     </div>
                 </div>
-                <!-- Player 7: Kiran Dahal (Kiran.jpg) -->
+                <!-- Player 7 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Kiran.jpg" alt="Kiran Dahal" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Kiran+Dahal'">
-                    </div>
+                    <div class="player-img"><img src="Kiran.jpg" alt="Kiran Dahal" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Kiran+Dahal'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Kiran Dahal</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">15</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Run Outs</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">15</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">3</div><div class="stat-label">Run Outs</div></div>
                     </div>
                 </div>
-                <!-- Player 8: Sonu Yamphu (Sonu.jpg) -->
+                <!-- Player 8 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Sonu.jpg" alt="Sonu Yamphu" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sonu+Yamphu'">
-                    </div>
+                    <div class="player-img"><img src="Sonu.jpg" alt="Sonu Yamphu" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sonu+Yamphu'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Sonu Yamphu</h3>
                         <div class="player-role">Bowler</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">22</div>
-                            <div class="stat-label">Wickets</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">4.2</div>
-                            <div class="stat-label">Economy</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">22</div><div class="stat-label">Wickets</div></div>
+                        <div class="stat"><div class="stat-value">4.2</div><div class="stat-label">Economy</div></div>
                     </div>
                 </div>
-                <!-- Player 9: Dhanraj Sah (Dhanraj.jpg) -->
+                <!-- Player 9 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Dhanraj.jpg" alt="Dhanraj Sah" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dhanraj+Sah'">
-                    </div>
+                    <div class="player-img"><img src="Dhanraj.jpg" alt="Dhanraj Sah" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dhanraj+Sah'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Dhanraj Sah</h3>
                         <div class="player-role">Batsman</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">310+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">32</div>
-                            <div class="stat-label">Highest</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">310+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">32</div><div class="stat-label">Highest</div></div>
                     </div>
                 </div>
-                <!-- Player 10: Samin Magar (Samin.jpg) -->
+                <!-- Player 10 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Samin.jpg" alt="Samin Magar" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Samin+Magar'">
-                    </div>
+                    <div class="player-img"><img src="Samin.jpg" alt="Samin Magar" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Samin+Magar'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Samin Magar</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">95%</div>
-                            <div class="stat-label">Efficiency</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">12</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">95%</div><div class="stat-label">Efficiency</div></div>
                     </div>
                 </div>
-                <!-- Player 11: Sekhar Magar (Sekhar.jpg) -->
+                <!-- Player 11 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Sekhar.jpg" alt="Sekhar Magar" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sekhar+Magar'">
-                    </div>
+                    <div class="player-img"><img src="Sekhar.jpg" alt="Sekhar Magar" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sekhar+Magar'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Sekhar Magar</h3>
                         <div class="player-role">Batsman</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">290+</div>
-                            <div class="stat-label">Runs</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">78</div>
-                            <div class="stat-label">Strike Rate</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">290+</div><div class="stat-label">Runs</div></div>
+                        <div class="stat"><div class="stat-value">78</div><div class="stat-label">Strike Rate</div></div>
                     </div>
                 </div>
-                <!-- Player 12: Suresh Magar (Suresh.jpg) -->
+                <!-- Player 12 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Suresh.jpg" alt="Suresh Magar" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suresh+Magar'">
-                    </div>
+                    <div class="player-img"><img src="Suresh.jpg" alt="Suresh Magar" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suresh+Magar'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Suresh Magar</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">Run Outs</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">8</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Run Outs</div></div>
                     </div>
                 </div>
-                <!-- Player 13: Anmol Magar (Anmol.jpg) -->
+                <!-- Player 13 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Anmol.jpg" alt="Anmol Magar" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Anmol+Magar'">
-                    </div>
+                    <div class="player-img"><img src="Anmol.jpg" alt="Anmol Magar" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Anmol+Magar'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Anmol Magar</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">10</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">1</div>
-                            <div class="stat-label">Run Outs</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">10</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">1</div><div class="stat-label">Run Outs</div></div>
                     </div>
                 </div>
-                <!-- Player 14: Aabiskar Ghimire (Aabiskar.jpg) -->
+                <!-- Player 14 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Aabiskar.jpg" alt="Aabiskar Ghimire" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Aabiskar+Ghimire'">
-                    </div>
+                    <div class="player-img"><img src="Aabiskar.jpg" alt="Aabiskar Ghimire" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Aabiskar+Ghimire'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Aabiskar Ghimire</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">7</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">90%</div>
-                            <div class="stat-label">Efficiency</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">7</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">90%</div><div class="stat-label">Efficiency</div></div>
                     </div>
                 </div>
-                <!-- Player 15: Suman Giri (Suman.jpg) -->
+                <!-- Player 15 -->
                 <div class="player-card fade-in-up">
-                    <div class="player-img">
-                        <img src="Suman.jpg" alt="Suman Giri" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suman+Giri'">
-                    </div>
+                    <div class="player-img"><img src="Suman.jpg" alt="Suman Giri" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suman+Giri'"></div>
                     <div class="player-info">
                         <h3 class="player-name">Suman Giri</h3>
                         <div class="player-role">Fielder</div>
                     </div>
                     <div class="player-stats">
-                        <div class="stat">
-                            <div class="stat-value">9</div>
-                            <div class="stat-label">Catches</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">Run Outs</div>
-                        </div>
+                        <div class="stat"><div class="stat-value">9</div><div class="stat-label">Catches</div></div>
+                        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Run Outs</div></div>
                     </div>
                 </div>
             </div>
@@ -1312,7 +728,7 @@
         </div>
     </section>
 
-    <!-- 2. GALLERY SECTION -->
+    <!-- 2. GALLERY SECTION (LAZY LOAD APPLIED) -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1329,64 +745,40 @@
             </div>
 
             <div class="gallery-grid" id="gallery-grid">
-                <!-- Gallery Item 1 -->
                 <div class="gallery-item" data-category="matches">
                     <a href="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Match Day - DCA vs Biratnagar">
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Match Day">
-                        <div class="gallery-overlay">
-                            <h4>Match Day</h4>
-                            <p>DCA vs Biratnagar Club</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Match Day" loading="lazy">
+                        <div class="gallery-overlay"><h4>Match Day</h4><p>DCA vs Biratnagar Club</p></div>
                     </a>
                 </div>
-                <!-- Gallery Item 2 -->
                 <div class="gallery-item" data-category="training">
                     <a href="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Training Session - Fast Bowling Practice">
-                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Training">
-                        <div class="gallery-overlay">
-                            <h4>Training Session</h4>
-                            <p>Fast Bowling Practice</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Training" loading="lazy">
+                        <div class="gallery-overlay"><h4>Training Session</h4><p>Fast Bowling Practice</p></div>
                     </a>
                 </div>
-                <!-- Gallery Item 3 -->
                 <div class="gallery-item" data-category="events">
                     <a href="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Tournament Opening Ceremony">
-                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Event">
-                        <div class="gallery-overlay">
-                            <h4>Opening Ceremony</h4>
-                            <p>Regional Tournament 2025</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Event" loading="lazy">
+                        <div class="gallery-overlay"><h4>Opening Ceremony</h4><p>Regional Tournament 2025</p></div>
                     </a>
                 </div>
-                <!-- Gallery Item 4 -->
                 <div class="gallery-item" data-category="team">
                     <a href="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Team Photo - DCA Squad 2025">
-                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team">
-                        <div class="gallery-overlay">
-                            <h4>Team Photo</h4>
-                            <p>DCA Squad 2025</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team" loading="lazy">
+                        <div class="gallery-overlay"><h4>Team Photo</h4><p>DCA Squad 2025</p></div>
                     </a>
                 </div>
-                <!-- Gallery Item 5 -->
                 <div class="gallery-item" data-category="matches">
                     <a href="https://images.unsplash.com/photo-1624526267942-ab0b8a3aee8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Celebration After Victory">
-                        <img src="https://images.unsplash.com/photo-1624526267942-ab0b8a3aee8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Celebration">
-                        <div class="gallery-overlay">
-                            <h4>Victory Celebration</h4>
-                            <p>Winners of Friendly Match</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1624526267942-ab0b8a3aee8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Celebration" loading="lazy">
+                        <div class="gallery-overlay"><h4>Victory Celebration</h4><p>Winners of Friendly Match</p></div>
                     </a>
                 </div>
-                <!-- Gallery Item 6 -->
                 <div class="gallery-item" data-category="training">
                     <a href="https://images.unsplash.com/photo-1589801256492-703c9d317c25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Net Practice Session">
-                        <img src="https://images.unsplash.com/photo-1589801256492-703c9d317c25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Net Practice">
-                        <div class="gallery-overlay">
-                            <h4>Net Practice</h4>
-                            <p>Morning Training Session</p>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1589801256492-703c9d317c25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Net Practice" loading="lazy">
+                        <div class="gallery-overlay"><h4>Net Practice</h4><p>Morning Training Session</p></div>
                     </a>
                 </div>
             </div>
@@ -1421,7 +813,7 @@
         </div>
     </section>
 
-    <!-- 4. NEWS SECTION -->
+    <!-- 4. NEWS SECTION (LAZY LOAD APPLIED) -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1432,7 +824,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">MAR 10</span>
-                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" loading="lazy">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">DCA Announces Squad for Regional Tournament</h3>
@@ -1443,7 +835,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">MAR 5</span>
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" loading="lazy">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">Training Camp Begins at Dangi Ground</h3>
@@ -1454,7 +846,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">FEB 28</span>
-                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News">
+                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" loading="lazy">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">Victory against Kerabari X</h3>
@@ -1512,14 +904,18 @@
     <script>
         function toggleMenu() {
             document.getElementById('nav-links').classList.toggle('active');
+            document.getElementById('menu-overlay').classList.toggle('active');
         }
 
-        // Close menu when clicking outside
+        // Close menu when clicking outside (on the overlay)
         document.addEventListener('click', function(event) {
             const navLinks = document.getElementById('nav-links');
             const hamburger = document.querySelector('.hamburger');
+            const overlay = document.getElementById('menu-overlay');
+            
             if (!navLinks.contains(event.target) && !hamburger.contains(event.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
+                overlay.classList.remove('active');
             }
         });
 
@@ -1527,6 +923,7 @@
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 document.getElementById('nav-links').classList.remove('active');
+                document.getElementById('menu-overlay').classList.remove('active');
             }
         });
 
