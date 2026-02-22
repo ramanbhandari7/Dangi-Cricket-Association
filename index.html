@@ -264,7 +264,6 @@
                 display: block;
                 padding: 15px 0;
             }
-            /* Close button inside mobile menu */
             .nav-links .close-menu {
                 position: absolute;
                 top: 20px;
@@ -273,7 +272,6 @@
                 cursor: pointer;
                 color: var(--can-red);
             }
-            /* Backdrop */
             .menu-backdrop {
                 position: fixed;
                 top: 0;
@@ -552,6 +550,7 @@
             font-weight: bold;
             color: var(--can-blue);
             transition: var(--transition);
+            cursor: pointer;
         }
         .view-profile:hover {
             color: var(--can-red);
@@ -1131,7 +1130,7 @@
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">DCA Squad (17 Members)</h2>
-                <a href="#" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="view-all-squad" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Management -->
@@ -1146,7 +1145,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
                         <div class="player-role">Head Coach</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Dil.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1168,7 +1167,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Raman Bhandari</h3>
                         <div class="player-role">Team Manager</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="raman.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1195,7 +1194,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Avishek Thapa</h3>
                         <div class="player-role">Captain / All-Rounder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Avishek.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1217,7 +1216,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Sanjay Yamphu Rai</h3>
                         <div class="player-role">Vice Captain / Batsman</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Sanjay.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1239,7 +1238,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Diwana Linka Yakha</h3>
                         <div class="player-role">Wicket Keeper/All Rounder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Diwana.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1260,7 +1259,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
                         <div class="player-role">Fast Bowler</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Dipson.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1281,7 +1280,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Manish Khadka</h3>
                         <div class="player-role">Spin Bowler/Batsman</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Manish.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1302,7 +1301,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Narayan Khadka</h3>
                         <div class="player-role">Batsman</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Narayan.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1323,7 +1322,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Kiran Dahal</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Kiran.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1344,7 +1343,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Sonu Yamphu</h3>
                         <div class="player-role">Bowler</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Sonu.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1365,7 +1364,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Dhanraj Sah</h3>
                         <div class="player-role">Batsman</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Dhanraj.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1386,7 +1385,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Samin Magar</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Samin.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1407,7 +1406,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Sekhar Magar</h3>
                         <div class="player-role">Batsman</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Sekhar.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1428,7 +1427,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Suresh Magar</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Suresh.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1449,7 +1448,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Anmol Magar</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Anmol.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1470,7 +1469,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Aabiskar Ghimire</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Aabiskar.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1491,7 +1490,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Suman Giri</h3>
                         <div class="player-role">Fielder</div>
-                        <a href="#" class="view-profile">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Suman.jpg">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1516,7 +1515,7 @@
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">Photo Gallery</h2>
-                <a href="#" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="view-all-gallery" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <div class="gallery-filter fade-in-up">
@@ -1538,7 +1537,6 @@
                         </div>
                     </a>
                 </div>
-                <!-- ... (rest of gallery items with lazy loading and dimensions) ... -->
                 <div class="gallery-item" data-category="training">
                     <a href="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Training Session - Fast Bowling Practice">
                         <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Training" width="800" height="600" loading="lazy">
@@ -1648,7 +1646,7 @@
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">Latest Updates</h2>
-                <a href="#" style="color: var(--can-red); font-weight: bold;">View Archive <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="view-all-news" style="color: var(--can-red); font-weight: bold;">View Archive <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="news-grid">
                 <div class="news-card fade-in-up">
@@ -1874,6 +1872,83 @@
                     } // add more as needed
                 });
             });
+
+            // --- NEW FUNCTIONALITY: View Profile opens full image in lightbox ---
+            document.querySelectorAll('.view-profile').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const imgSrc = this.getAttribute('data-img');
+                    if (!imgSrc) return;
+                    // Create a temporary anchor to trigger lightbox
+                    const tempLink = document.createElement('a');
+                    tempLink.href = imgSrc;
+                    tempLink.setAttribute('data-lightbox', 'profile');
+                    tempLink.setAttribute('data-title', 'Player Profile');
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                });
+            });
+
+            // --- View All Squad: open lightbox with all player images ---
+            const viewAllSquad = document.querySelector('.view-all-squad');
+            if (viewAllSquad) {
+                viewAllSquad.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Collect all player image URLs from squad cards
+                    const playerImgs = document.querySelectorAll('.player-card .player-img img');
+                    if (playerImgs.length === 0) return;
+                    // Create a container and add each image as a lightbox item
+                    const container = document.createElement('div');
+                    container.style.display = 'none';
+                    playerImgs.forEach((img, index) => {
+                        const link = document.createElement('a');
+                        link.href = img.src; // use actual image src
+                        link.setAttribute('data-lightbox', 'squad-all');
+                        link.setAttribute('data-title', img.alt || 'Player');
+                        container.appendChild(link);
+                    });
+                    document.body.appendChild(container);
+                    // Click the first link to open lightbox gallery
+                    const firstLink = container.querySelector('a');
+                    if (firstLink) firstLink.click();
+                    document.body.removeChild(container);
+                });
+            }
+
+            // --- View All Gallery: trigger "All" filter and open first image ---
+            const viewAllGallery = document.querySelector('.view-all-gallery');
+            if (viewAllGallery) {
+                viewAllGallery.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Activate "All" filter
+                    filterGallery('all');
+                    // Open first gallery image in lightbox
+                    const firstGalleryItem = document.querySelector('.gallery-item a[data-lightbox="gallery"]');
+                    if (firstGalleryItem) {
+                        firstGalleryItem.click();
+                    }
+                });
+            }
+
+            // --- View All News: scroll to news section and highlight ---
+            const viewAllNews = document.querySelector('.view-all-news');
+            if (viewAllNews) {
+                viewAllNews.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const newsSection = document.getElementById('news');
+                    if (newsSection) {
+                        newsSection.scrollIntoView({ behavior: 'smooth' });
+                        // Optional: add a temporary highlight
+                        newsSection.style.transition = 'background-color 0.5s';
+                        newsSection.style.backgroundColor = 'rgba(220,20,60,0.1)';
+                        setTimeout(() => {
+                            newsSection.style.backgroundColor = '';
+                        }, 1000);
+                    }
+                });
+            }
+
         })();
     </script>
 </body>
