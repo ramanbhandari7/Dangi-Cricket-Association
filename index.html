@@ -890,7 +890,7 @@
             color: var(--gray-text);
         }
 
-        /* --- 10. NEWS SECTION --- */
+        /* --- 10. NEWS SECTION with share buttons --- */
         .news-section { padding: 80px 0; background: var(--light-bg); }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .news-card {
@@ -946,13 +946,36 @@
             font-size: 0.9rem; 
             font-weight: bold; 
             color: var(--can-red); 
-            display: flex; 
+            display: inline-flex; 
             align-items: center; 
             gap: 5px;
             transition: gap 0.3s ease;
+            margin-right: 15px;
         }
         .read-more:hover {
             gap: 10px;
+        }
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light-bg);
+            color: var(--can-blue);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .share-btn:hover {
+            background: var(--can-red);
+            color: white;
+            transform: translateY(-3px);
         }
 
         /* --- 11. SPONSORS CAROUSEL --- */
@@ -1090,7 +1113,7 @@
             transform: translateY(-5px);
         }
 
-        /* --- RESPONSIVE FIXES (enhanced for very small devices) --- */
+        /* --- RESPONSIVE FIXES --- */
         @media (max-width: 1024px) {
             .hero { height: 500px; }
         }
@@ -1242,7 +1265,7 @@
                 <span><i class="fas fa-phone" aria-hidden="true"></i> +977 9810430546</span>
             </div>
             <div class="top-socials">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
@@ -1292,17 +1315,17 @@
         </div>
     </section>
 
-    <!-- TEAM PHOTO SECTION (using currentteam.jpg) -->
+    <!-- TEAM PHOTO SECTION (currentteam.jpg) -->
     <section class="team-photo-section" id="team-photo">
         <div class="container">
             <h2 class="section-title fade-in-up">Our Current Squad</h2>
             <div class="fade-in-up">
-                <img src="currentteam.jpg" alt="DCA Current Squad" width="900" height="500" loading="lazy" onerror="this.src='https://via.placeholder.com/900x500/003893/ffffff?text=DCA+Current+Squad'">
+                <img src="currentteam.jpeg" alt="DCA Current Squad" width="900" height="500" loading="lazy" onerror="this.src='https://via.placeholder.com/900x500/003893/ffffff?text=DCA+Current+Squad'">
             </div>
         </div>
     </section>
 
-    <!-- SQUAD SECTION (player cards only) -->
+    <!-- SQUAD SECTION (full 17 members) -->
     <section class="squad-section" id="squad">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1310,7 +1333,7 @@
                 <a href="#" class="view-all-squad" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Management -->
+            <!-- Management (2) -->
             <div class="management-title fade-in-up"><span>⚡ TEAM MANAGEMENT ⚡</span></div>
             <div class="squad-grid">
                 <!-- Coach -->
@@ -1322,7 +1345,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Dil Prasad Magar</h3>
                         <div class="player-role">Head Coach</div>
-                        <a href="#" class="view-profile" data-img="Dil.jpg" data-name="Dil Prasad Magar" data-role="Head Coach" data-stats='[{"label":"Years Exp","value":"10+"},{"label":"Trophies","value":"5"}]' data-bio="A seasoned coach with over 10 years of experience, Dil has led teams to 5 championship victories. Known for his tactical brilliance and player development." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Dil.jpg" data-name="Dil Prasad Magar" data-role="Head Coach" data-stats='[{"label":"Years Exp","value":"10+"},{"label":"Trophies","value":"5"}]' data-bio="A seasoned coach with over 10 years of experience, Dil has led teams to 5 championship victories. Known for his tactical brilliance and player development." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1344,7 +1367,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Raman Bhandari</h3>
                         <div class="player-role">Team Manager</div>
-                        <a href="#" class="view-profile" data-img="raman.jpg" data-name="Raman Bhandari" data-role="Team Manager" data-stats='[{"label":"Projects","value":"5+"},{"label":"Dedication","value":"100%"}]' data-bio="Raman is the driving force behind the team's operations. With a background in sports management, he ensures everything runs smoothly." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="raman.jpg" data-name="Raman Bhandari" data-role="Team Manager" data-stats='[{"label":"Projects","value":"5+"},{"label":"Dedication","value":"100%"}]' data-bio="Raman is the driving force behind the team's operations. With a background in sports management, he ensures everything runs smoothly." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1359,7 +1382,7 @@
                 </div>
             </div>
 
-            <!-- Players -->
+            <!-- Players (15) -->
             <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
             <div class="squad-grid" id="initial-squad">
                 <!-- Player 1: Captain -->
@@ -1371,7 +1394,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Avishek Thapa</h3>
                         <div class="player-role">Captain / All-Rounder</div>
-                        <a href="#" class="view-profile" data-img="Avishek.jpg" data-name="Avishek Thapa" data-role="Captain / All-Rounder" data-stats='[{"label":"Runs","value":"450+"},{"label":"Wickets","value":"25"}]' data-bio="A dynamic leader and all-rounder, Avishek leads from the front. His aggressive batting and handy medium pace make him a match-winner." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Avishek.jpg" data-name="Avishek Thapa" data-role="Captain / All-Rounder" data-stats='[{"label":"Runs","value":"450+"},{"label":"Wickets","value":"25"}]' data-bio="A dynamic leader and all-rounder, Avishek leads from the front. His aggressive batting and handy medium pace make him a match-winner." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1393,7 +1416,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Sanjay Yamphu Rai</h3>
                         <div class="player-role">Vice Captain / Batsman</div>
-                        <a href="#" class="view-profile" data-img="Sanjay.jpg" data-name="Sanjay Yamphu Rai" data-role="Vice Captain / Batsman" data-stats='[{"label":"Runs","value":"520+"},{"label":"Strike Rate","value":"85+"}]' data-bio="A stylish top-order batsman, Sanjay anchors the innings. His calm presence and ability to accelerate make him invaluable." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Sanjay.jpg" data-name="Sanjay Yamphu Rai" data-role="Vice Captain / Batsman" data-stats='[{"label":"Runs","value":"520+"},{"label":"Strike Rate","value":"85+"}]' data-bio="A stylish top-order batsman, Sanjay anchors the innings. His calm presence and ability to accelerate make him invaluable." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1415,7 +1438,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Diwana Linka Yakha</h3>
                         <div class="player-role">Wicket Keeper/All Rounder</div>
-                        <a href="#" class="view-profile" data-img="Diwana.jpg" data-name="Diwana Linka Yakha" data-role="Wicket Keeper/All Rounder" data-stats='[{"label":"Catches","value":"25"},{"label":"Stumpings","value":"5"}]' data-bio="A safe pair of hands behind the stumps, Diwana also contributes with bat and ball. His energy electrifies the field." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Diwana.jpg" data-name="Diwana Linka Yakha" data-role="Wicket Keeper/All Rounder" data-stats='[{"label":"Catches","value":"25"},{"label":"Stumpings","value":"5"}]' data-bio="A safe pair of hands behind the stumps, Diwana also contributes with bat and ball. Her energy electrifies the field." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1428,7 +1451,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- (Add similar data attributes for remaining players – we'll include a few more as examples) -->
                 <!-- Player 4: Dipson Karki -->
                 <div class="player-card fade-in-up">
                     <div class="player-img">
@@ -1437,7 +1459,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Dipson Karki</h3>
                         <div class="player-role">Fast Bowler</div>
-                        <a href="#" class="view-profile" data-img="Dipson.jpg" data-name="Dipson Karki" data-role="Fast Bowler" data-stats='[{"label":"Speed","value":"135+km/h"},{"label":"Wickets","value":"30"}]' data-bio="Dipson bowls with raw pace and can move the ball both ways. He's the spearhead of the attack." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Dipson.jpg" data-name="Dipson Karki" data-role="Fast Bowler" data-stats='[{"label":"Speed","value":"135+km/h"},{"label":"Wickets","value":"30"}]' data-bio="Dipson bowls with raw pace and can move the ball both ways. He's the spearhead of the attack." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1458,7 +1480,7 @@
                     <div class="player-info">
                         <h3 class="player-name">Manish Khadka</h3>
                         <div class="player-role">Spin Bowler/Batsman</div>
-                        <a href="#" class="view-profile" data-img="Manish.jpg" data-name="Manish Khadka" data-role="Spin Bowler/Batsman" data-stats='[{"label":"Runs","value":"280+"},{"label":"Wickets","value":"18"}]' data-bio="A crafty left-arm spinner who can also bat down the order. Manish often breaks partnerships." data-fb="https://facebook.com/#">View Profile <i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="view-profile" data-img="Manish.jpg" data-name="Manish Khadka" data-role="Spin Bowler/Batsman" data-stats='[{"label":"Runs","value":"280+"},{"label":"Wickets","value":"18"}]' data-bio="A crafty left-arm spinner who can also bat down the order. Manish often breaks partnerships." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
                     </div>
                     <div class="player-stats">
                         <div class="stat">
@@ -1471,7 +1493,216 @@
                         </div>
                     </div>
                 </div>
-                <!-- (Rest of players would follow similarly) -->
+                <!-- Player 6: Narayan Khadka -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Narayan.jpg" alt="Narayan Khadka, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Narayan+Khadka'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Narayan Khadka</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Narayan.jpg" data-name="Narayan Khadka" data-role="Batsman" data-stats='[{"label":"Runs","value":"380+"},{"label":"Fifties","value":"4"}]' data-bio="A reliable middle-order batsman, Narayan is known for his consistency and ability to rotate the strike." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">380+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4</div>
+                            <div class="stat-label">Fifties</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 7: Kiran Dahal -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Kiran.jpg" alt="Kiran Dahal, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Kiran+Dahal'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Kiran Dahal</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Kiran.jpg" data-name="Kiran Dahal" data-role="Fielder" data-stats='[{"label":"Catches","value":"15"},{"label":"Run Outs","value":"3"}]' data-bio="Kiran is an electric fielder, saving crucial runs and effecting run-outs with his direct hits." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 8: Sonu Yamphu -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Sonu.jpg" alt="Sonu Yamphu, Bowler" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sonu+Yamphu'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sonu Yamphu</h3>
+                        <div class="player-role">Bowler</div>
+                        <a href="#" class="view-profile" data-img="Sonu.jpg" data-name="Sonu Yamphu" data-role="Bowler" data-stats='[{"label":"Wickets","value":"22"},{"label":"Economy","value":"4.2"}]' data-bio="Sonu is a disciplined medium-pacer who bowls tight lines and picks up wickets regularly." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">22</div>
+                            <div class="stat-label">Wickets</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4.2</div>
+                            <div class="stat-label">Economy</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 9: Dhanraj Sah -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Dhanraj.jpg" alt="Dhanraj Sah, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Dhanraj+Sah'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Dhanraj Sah</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Dhanraj.jpg" data-name="Dhanraj Sah" data-role="Batsman" data-stats='[{"label":"Runs","value":"310+"},{"label":"Highest","value":"32"}]' data-bio="Dhanraj is a hard-hitting batsman who can change the game in a few overs." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">310+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">32</div>
+                            <div class="stat-label">Highest</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 10: Samin Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Samin.jpg" alt="Samin Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Samin+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Samin Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Samin.jpg" data-name="Samin Magar" data-role="Fielder" data-stats='[{"label":"Catches","value":"12"},{"label":"Efficiency","value":"95%"}]' data-bio="Samin is a safe fielder with quick reflexes, rarely missing an opportunity." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Efficiency</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 11: Sekhar Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Sekhar.jpg" alt="Sekhar Magar, Batsman" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Sekhar+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Sekhar Magar</h3>
+                        <div class="player-role">Batsman</div>
+                        <a href="#" class="view-profile" data-img="Sekhar.jpg" data-name="Sekhar Magar" data-role="Batsman" data-stats='[{"label":"Runs","value":"290+"},{"label":"Strike Rate","value":"78"}]' data-bio="Sekhar is an aggressive opener who likes to take on the bowlers early." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">290+</div>
+                            <div class="stat-label">Runs</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">78</div>
+                            <div class="stat-label">Strike Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 12: Suresh Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Suresh.jpg" alt="Suresh Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suresh+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suresh Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Suresh.jpg" data-name="Suresh Magar" data-role="Fielder" data-stats='[{"label":"Catches","value":"8"},{"label":"Run Outs","value":"2"}]' data-bio="Suresh is a dependable fielder in the deep, with a strong arm." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 13: Anmol Magar -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Anmol.jpg" alt="Anmol Magar, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Anmol+Magar'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Anmol Magar</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Anmol.jpg" data-name="Anmol Magar" data-role="Fielder" data-stats='[{"label":"Catches","value":"10"},{"label":"Run Outs","value":"1"}]' data-bio="Anmol is agile in the infield and has a safe pair of hands." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">10</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">1</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 14: Aabiskar Ghimire -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Aabiskar.jpg" alt="Aabiskar Ghimire, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Aabiskar+Ghimire'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Aabiskar Ghimire</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Aabiskar.jpg" data-name="Aabiskar Ghimire" data-role="Fielder" data-stats='[{"label":"Catches","value":"7"},{"label":"Efficiency","value":"90%"}]' data-bio="Aabiskar is a young talent with great potential in the field." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">90%</div>
+                            <div class="stat-label">Efficiency</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Player 15: Suman Giri -->
+                <div class="player-card fade-in-up">
+                    <div class="player-img">
+                        <img src="Suman.jpg" alt="Suman Giri, Fielder" width="300" height="400" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400/003893/ffffff?text=Suman+Giri'">
+                    </div>
+                    <div class="player-info">
+                        <h3 class="player-name">Suman Giri</h3>
+                        <div class="player-role">Fielder</div>
+                        <a href="#" class="view-profile" data-img="Suman.jpg" data-name="Suman Giri" data-role="Fielder" data-stats='[{"label":"Catches","value":"9"},{"label":"Run Outs","value":"2"}]' data-bio="Suman is a versatile fielder who can field anywhere on the ground." data-fb="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/">View Profile <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="player-stats">
+                        <div class="stat">
+                            <div class="stat-value">9</div>
+                            <div class="stat-label">Catches</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Run Outs</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <p style="text-align: center; margin-top: 40px; color: var(--gray-text); font-weight: bold; font-size: 1.1rem;">
                 ⚡ Total 17 Members | 2 Management + 15 Players ⚡
@@ -1479,7 +1710,7 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTION (unchanged) -->
+    <!-- GALLERY SECTION -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1618,7 +1849,7 @@
         </div>
     </section>
 
-    <!-- NEWS SECTION -->
+    <!-- NEWS SECTION with share buttons -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1634,7 +1865,14 @@
                     <div class="news-content">
                         <h3 class="news-title">DCA Announces Squad for Regional Tournament</h3>
                         <p style="color: var(--gray-text); margin-bottom: 15px;">15 players selected for the upcoming championship...</p>
-                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                            <div class="share-buttons">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.dca-cricket.com/news/1" target="_blank" class="share-btn" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/intent/tweet?text=DCA Announces Squad for Regional Tournament&url=https://www.dca-cricket.com/news/1" target="_blank" class="share-btn" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://api.whatsapp.com/send?text=DCA Announces Squad for Regional Tournament https://www.dca-cricket.com/news/1" target="_blank" class="share-btn" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="news-card fade-in-up">
@@ -1645,7 +1883,14 @@
                     <div class="news-content">
                         <h3 class="news-title">Training Camp Begins at Dangi Ground</h3>
                         <p style="color: var(--gray-text); margin-bottom: 15px;">Intensive practice sessions start from March 12th...</p>
-                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                            <div class="share-buttons">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.dca-cricket.com/news/2" target="_blank" class="share-btn"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/intent/tweet?text=Training Camp Begins at Dangi Ground&url=https://www.dca-cricket.com/news/2" target="_blank" class="share-btn"><i class="fab fa-twitter"></i></a>
+                                <a href="https://api.whatsapp.com/send?text=Training Camp Begins at Dangi Ground https://www.dca-cricket.com/news/2" target="_blank" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="news-card fade-in-up">
@@ -1656,7 +1901,14 @@
                     <div class="news-content">
                         <h3 class="news-title">Victory against Kerabari X</h3>
                         <p style="color: var(--gray-text); margin-bottom: 15px;">DCA wins friendly match by 45 runs...</p>
-                        <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <a href="#" class="read-more">Read Full Story <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                            <div class="share-buttons">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.dca-cricket.com/news/3" target="_blank" class="share-btn"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://twitter.com/intent/tweet?text=Victory against Kerabari X&url=https://www.dca-cricket.com/news/3" target="_blank" class="share-btn"><i class="fab fa-twitter"></i></a>
+                                <a href="https://api.whatsapp.com/send?text=Victory against Kerabari X https://www.dca-cricket.com/news/3" target="_blank" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1683,7 +1935,7 @@
                     <h3>DCA</h3>
                     <p>The official governing body of cricket in Dangi, Kerabari-6 & 7. Committed to excellence, integrity, and community spirit since 2020.</p>
                     <div style="margin-top: 20px;">
-                        <a href="#" aria-label="Facebook" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/p/DANGI-Cricket-Association-DCA-100039530936619/" target="_blank" aria-label="Facebook" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Twitter" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Instagram" style="color: var(--white); margin-right: 15px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="YouTube" style="color: var(--white); font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
@@ -1878,7 +2130,6 @@
             const modalSocial = document.getElementById('modalSocial');
             const closeModal = document.querySelector('.close-modal');
 
-            // Close modal when clicking on X or outside
             closeModal.onclick = function() {
                 modal.style.display = 'none';
             }
@@ -1888,12 +2139,10 @@
                 }
             }
 
-            // Attach click to all view-profile links
             document.querySelectorAll('.view-profile').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    // Get data from attributes
                     const imgSrc = this.getAttribute('data-img');
                     const name = this.getAttribute('data-name');
                     const role = this.getAttribute('data-role');
@@ -1901,13 +2150,11 @@
                     const bio = this.getAttribute('data-bio') || 'No biography available.';
                     const fbUrl = this.getAttribute('data-fb') || '#';
 
-                    // Set modal content
                     modalImg.src = imgSrc;
                     modalImg.alt = name;
                     modalName.textContent = name;
                     modalRole.textContent = role;
                     
-                    // Build stats HTML
                     let statsHtml = '';
                     stats.forEach(stat => {
                         statsHtml += `<div class="modal-stat"><div class="stat-value">${stat.value}</div><div class="stat-label">${stat.label}</div></div>`;
@@ -1916,10 +2163,8 @@
                     
                     modalBio.textContent = bio;
                     
-                    // Social links
                     modalSocial.innerHTML = `<a href="${fbUrl}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>`;
                     
-                    // Show modal
                     modal.style.display = 'flex';
                 });
             });
