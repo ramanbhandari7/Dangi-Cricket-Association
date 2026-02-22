@@ -542,7 +542,7 @@
             letter-spacing: 1px;
         }
 
-        /* View Profile link (new) */
+        /* View Profile link */
         .view-profile {
             display: inline-block;
             margin-top: 15px;
@@ -703,7 +703,7 @@
             text-transform: uppercase;
         }
 
-        /* --- 8. RECENT RESULTS (new) --- */
+        /* --- 8. RECENT RESULTS --- */
         .results-section {
             padding: 60px 0;
             background: var(--light-bg);
@@ -801,7 +801,7 @@
             gap: 10px;
         }
 
-        /* --- 10. SPONSORS CAROUSEL (new) --- */
+        /* --- 10. SPONSORS CAROUSEL --- */
         .sponsors-section {
             padding: 40px 0;
             background: var(--white);
@@ -936,7 +936,7 @@
             transform: translateY(-5px);
         }
 
-        /* --- RESPONSIVE FIXES (enhanced) --- */
+        /* --- RESPONSIVE FIXES --- */
         @media (max-width: 1024px) {
             .hero { height: 500px; }
         }
@@ -1107,9 +1107,9 @@
         <div class="menu-backdrop" id="menu-backdrop"></div>
     </nav>
 
-    <!-- HERO WITH VIDEO -->
+    <!-- HERO WITH VIDEO (using start.jpg as poster) -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="poster.jpg">
+        <video class="hero-video" autoplay muted loop playsinline poster="start.jpg">
             <source src="Video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -1125,12 +1125,17 @@
         </div>
     </section>
 
-    <!-- SQUAD SECTION -->
+    <!-- SQUAD SECTION (added squad.jpg group photo) -->
     <section class="squad-section" id="squad">
         <div class="container">
             <div class="section-header fade-in-up">
                 <h2 class="section-title">DCA Squad (17 Members)</h2>
                 <a href="#" class="view-all-squad" style="color: var(--can-red); font-weight: bold;">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <!-- Group photo -->
+            <div class="fade-in-up" style="margin-bottom: 40px; text-align: center;">
+                <img src="squad.jpg" alt="DCA Full Squad" style="width: 100%; max-width: 800px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin: 0 auto;" width="800" height="450" loading="lazy" onerror="this.src='https://via.placeholder.com/800x450/003893/ffffff?text=DCA+Squad'">
             </div>
 
             <!-- Management -->
@@ -1182,7 +1187,7 @@
                 </div>
             </div>
 
-            <!-- Players -->
+            <!-- Players (unchanged, but their images remain individual) -->
             <div class="management-title fade-in-up"><span>🏏 DCA PLAYERS 🏏</span></div>
             <div class="squad-grid" id="initial-squad">
                 <!-- Player 1: Captain -->
@@ -1510,7 +1515,7 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- GALLERY SECTION (using your local images) -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1527,55 +1532,60 @@
             </div>
 
             <div class="gallery-grid" id="gallery-grid">
-                <!-- Gallery items with data-category -->
+                <!-- Match category -->
                 <div class="gallery-item" data-category="matches">
-                    <a href="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Match Day - DCA vs Biratnagar">
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Match Day" width="800" height="600" loading="lazy">
+                    <a href="old.jpg" data-lightbox="gallery" data-title="Historic Match - DCA vs Rivals">
+                        <img src="old.jpg" alt="Historic match" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Match'">
                         <div class="gallery-overlay">
-                            <h4>Match Day</h4>
-                            <p>DCA vs Biratnagar Club</p>
+                            <h4>Historic Match</h4>
+                            <p>DCA vs Rivals (2005)</p>
                         </div>
                     </a>
                 </div>
+                <!-- Training category -->
                 <div class="gallery-item" data-category="training">
-                    <a href="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Training Session - Fast Bowling Practice">
-                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Training" width="800" height="600" loading="lazy">
+                    <a href="training.jpg" data-lightbox="gallery" data-title="Training Session - Fast Bowling">
+                        <img src="training.jpg" alt="Training session" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Training'">
                         <div class="gallery-overlay">
                             <h4>Training Session</h4>
                             <p>Fast Bowling Practice</p>
                         </div>
                     </a>
                 </div>
-                <div class="gallery-item" data-category="events">
-                    <a href="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Tournament Opening Ceremony">
-                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Event" width="800" height="600" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h4>Opening Ceremony</h4>
-                            <p>Regional Tournament 2025</p>
-                        </div>
-                    </a>
-                </div>
+                <!-- Team category -->
                 <div class="gallery-item" data-category="team">
-                    <a href="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Team Photo - DCA Squad 2025">
-                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team" width="800" height="600" loading="lazy">
+                    <a href="team.jpg" data-lightbox="gallery" data-title="Team Photo - DCA Squad 2025">
+                        <img src="team.jpg" alt="Team photo" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Team'">
                         <div class="gallery-overlay">
                             <h4>Team Photo</h4>
                             <p>DCA Squad 2025</p>
                         </div>
                     </a>
                 </div>
+                <!-- Start (could be events) -->
+                <div class="gallery-item" data-category="events">
+                    <a href="start.jpg" data-lightbox="gallery" data-title="Season Opening Ceremony">
+                        <img src="start.jpg" alt="Opening ceremony" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Start'">
+                        <div class="gallery-overlay">
+                            <h4>Opening Ceremony</h4>
+                            <p>New Season Kickoff</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Additional match (use old.jpg again or duplicate as needed) -->
                 <div class="gallery-item" data-category="matches">
-                    <a href="https://images.unsplash.com/photo-1624526267942-ab0b8a3aee8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Celebration After Victory">
-                        <img src="https://images.unsplash.com/photo-1624526267942-ab0b8a3aee8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Celebration" width="800" height="600" loading="lazy">
+                    <a href="old.jpg" data-lightbox="gallery" data-title="Victory Celebration">
+                        <img src="old.jpg" alt="Celebration" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Celebration'">
                         <div class="gallery-overlay">
                             <h4>Victory Celebration</h4>
                             <p>Winners of Friendly Match</p>
                         </div>
                     </a>
                 </div>
+                <!-- Another training -->
                 <div class="gallery-item" data-category="training">
-                    <a href="https://images.unsplash.com/photo-1589801256492-703c9d317c25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Net Practice Session">
-                        <img src="https://images.unsplash.com/photo-1589801256492-703c9d317c25?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Net Practice" width="800" height="600" loading="lazy">
+                    <a href="training.jpg" data-lightbox="gallery" data-title="Net Practice Session">
+                        <img src="training.jpg" alt="Net practice" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Net+Practice'">
                         <div class="gallery-overlay">
                             <h4>Net Practice</h4>
                             <p>Morning Training Session</p>
@@ -1614,7 +1624,7 @@
         </div>
     </section>
 
-    <!-- RECENT RESULTS (new) -->
+    <!-- RECENT RESULTS (using training.jpg for visual context) -->
     <section class="results-section">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1638,10 +1648,14 @@
                     <div class="result-status">Tournament | 10 Feb 2025</div>
                 </div>
             </div>
+            <!-- Small image to add context -->
+            <div style="text-align: center; margin-top: 30px;">
+                <img src="training.jpg" alt="Training session" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" width="600" height="300" loading="lazy">
+            </div>
         </div>
     </section>
 
-    <!-- NEWS SECTION -->
+    <!-- NEWS SECTION (using team.jpg and old.jpg) -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-header fade-in-up">
@@ -1652,7 +1666,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">MAR 10</span>
-                        <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" width="800" height="600" loading="lazy">
+                        <img src="team.jpg" alt="Team announcement" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Team'">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">DCA Announces Squad for Regional Tournament</h3>
@@ -1663,7 +1677,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">MAR 5</span>
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" width="800" height="600" loading="lazy">
+                        <img src="training.jpg" alt="Training camp" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/DC143C/ffffff?text=Training'">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">Training Camp Begins at Dangi Ground</h3>
@@ -1674,7 +1688,7 @@
                 <div class="news-card fade-in-up">
                     <div class="news-img">
                         <span class="news-date-badge">FEB 28</span>
-                        <img src="https://images.unsplash.com/photo-1593341646229-231a415951d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="News" width="800" height="600" loading="lazy">
+                        <img src="old.jpg" alt="Victory" width="800" height="600" loading="lazy" onerror="this.src='https://via.placeholder.com/800x600/003893/ffffff?text=Victory'">
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">Victory against Kerabari X</h3>
@@ -1686,7 +1700,7 @@
         </div>
     </section>
 
-    <!-- SPONSORS CAROUSEL (new) -->
+    <!-- SPONSORS CAROUSEL (placeholder, can be replaced) -->
     <section class="sponsors-section">
         <div class="container">
             <div class="sponsors-grid">
@@ -1790,12 +1804,12 @@
                     const target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        closeMenuFn(); // close mobile menu after click
+                        closeMenuFn();
                     }
                 });
             });
 
-            // Gallery filter (using data-filter)
+            // Gallery filter
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -1815,7 +1829,6 @@
                         }, 300);
                     }
                 });
-                // Update active button
                 filterButtons.forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.dataset.filter === category) {
@@ -1830,7 +1843,7 @@
                 });
             });
 
-            // Intersection Observer for fade-in-up
+            // Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if(entry.isIntersecting) {
@@ -1841,7 +1854,7 @@
             
             document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-            // Back to top button visibility
+            // Back to top
             const backToTop = document.getElementById('back-to-top');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -1862,24 +1875,25 @@
                 });
             }
 
-            // Fallback for images
+            // Image fallbacks
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', function() {
                     if(this.alt && this.alt.includes('Logo')) {
                         this.src = 'https://via.placeholder.com/45x45/003893/ffffff?text=DCA';
                     } else if (this.alt && this.alt.includes('Dil')) {
                         this.src = 'https://via.placeholder.com/300x400/e1e1e1/003893?text=Dil+Prasad+Magar';
+                    } else if (this.alt && this.alt.includes('Raman')) {
+                        this.src = 'https://via.placeholder.com/300x400/e1e1e1/003893?text=Raman+Bhandari';
                     } // add more as needed
                 });
             });
 
-            // --- NEW FUNCTIONALITY: View Profile opens full image in lightbox ---
+            // View Profile
             document.querySelectorAll('.view-profile').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const imgSrc = this.getAttribute('data-img');
                     if (!imgSrc) return;
-                    // Create a temporary anchor to trigger lightbox
                     const tempLink = document.createElement('a');
                     tempLink.href = imgSrc;
                     tempLink.setAttribute('data-lightbox', 'profile');
@@ -1890,40 +1904,35 @@
                 });
             });
 
-            // --- View All Squad: open lightbox with all player images ---
+            // View All Squad
             const viewAllSquad = document.querySelector('.view-all-squad');
             if (viewAllSquad) {
                 viewAllSquad.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Collect all player image URLs from squad cards
                     const playerImgs = document.querySelectorAll('.player-card .player-img img');
                     if (playerImgs.length === 0) return;
-                    // Create a container and add each image as a lightbox item
                     const container = document.createElement('div');
                     container.style.display = 'none';
                     playerImgs.forEach((img, index) => {
                         const link = document.createElement('a');
-                        link.href = img.src; // use actual image src
+                        link.href = img.src;
                         link.setAttribute('data-lightbox', 'squad-all');
                         link.setAttribute('data-title', img.alt || 'Player');
                         container.appendChild(link);
                     });
                     document.body.appendChild(container);
-                    // Click the first link to open lightbox gallery
                     const firstLink = container.querySelector('a');
                     if (firstLink) firstLink.click();
                     document.body.removeChild(container);
                 });
             }
 
-            // --- View All Gallery: trigger "All" filter and open first image ---
+            // View All Gallery
             const viewAllGallery = document.querySelector('.view-all-gallery');
             if (viewAllGallery) {
                 viewAllGallery.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Activate "All" filter
                     filterGallery('all');
-                    // Open first gallery image in lightbox
                     const firstGalleryItem = document.querySelector('.gallery-item a[data-lightbox="gallery"]');
                     if (firstGalleryItem) {
                         firstGalleryItem.click();
@@ -1931,7 +1940,7 @@
                 });
             }
 
-            // --- View All News: scroll to news section and highlight ---
+            // View All News
             const viewAllNews = document.querySelector('.view-all-news');
             if (viewAllNews) {
                 viewAllNews.addEventListener('click', function(e) {
@@ -1939,7 +1948,6 @@
                     const newsSection = document.getElementById('news');
                     if (newsSection) {
                         newsSection.scrollIntoView({ behavior: 'smooth' });
-                        // Optional: add a temporary highlight
                         newsSection.style.transition = 'background-color 0.5s';
                         newsSection.style.backgroundColor = 'rgba(220,20,60,0.1)';
                         setTimeout(() => {
